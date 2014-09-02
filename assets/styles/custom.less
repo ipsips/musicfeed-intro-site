@@ -1,0 +1,683 @@
+/*//////////////////////////////
+
+    Custom CSS directives
+
+//////////////////////////////*/
+
+html, body {
+    height: 100%;
+    background-color: @gray-darker;
+    .antialiased;
+}
+
+body {
+    font-weight: 300;
+}
+
+a {
+    .lh-transition( color @reflex @ease );
+
+    &:hover,
+    &:focus {
+        text-decoration: none;
+    }
+}
+
+
+
+//``````````````````````````````
+//  Branding
+//
+#logo {
+    
+    &:hover, &:active {
+        color: @brand-primary;
+    }
+}
+
+
+
+//``````````````````````````````
+//  Intro
+//
+
+@scale: .5;
+@tapScale: 2.5;
+
+.carousel {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    font-size: 16px * 2 * @scale;
+
+    ul {
+        list-style: none;
+    }
+
+    //  the moveable strip
+    >ul {
+        padding: ( 60px * @scale ) 0 0;
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        position: relative;
+        overflow: hidden;
+        // z-index: 1;
+        .lh-backface-visibility( hidden );
+
+        &.animate {
+            .lh-transition( transform .2s @ease );
+        }
+
+        li {
+            width: 100%;
+            height: 100%;
+            float: left;
+            overflow: hidden;
+            text-align: center;
+        }
+    }
+
+    //  the fixed phone wireframe
+    >div {
+        top: 53%;
+        width: 340px * @scale;
+        height: 719px * @scale;
+        margin: ( -719px * @scale / 2 ) ( -340px * @scale / 2 );
+        border: ceil( 3px * @scale ) solid @gray-dark;
+        .lh-border-radius( 48px * @scale );
+        // pointer-events: none;
+        
+        #display {
+            width: 300px * @scale;
+            height: 526px * @scale;
+            top: 50%;
+            margin: ( -526px * @scale / 2 ) ( -300px * @scale / 2 );
+            border: ceil( 1px * @scale ) solid fade( @gray-dark, ( min( 100%, 100% * @scale ) ) );
+            overflow: hidden;
+        }
+        
+        &, #lock-button, #mute-button, #up-button, #down-button, #home-button, #camera, #mic, #receiver, #display {
+            position: absolute;
+            left: 50%;
+        }
+
+        #lock-button {
+            width: 54px * @scale;
+            height: 4px * @scale;
+            top: ceil( -3px * @scale * 2 );
+            left: 228px * @scale;
+            background-color: @gray-dark;
+        }
+
+        #mute-button {
+            width: 4px * @scale;
+            height: 34px * @scale;
+            top: 96px * @scale;
+            left: ceil( -3px * @scale * 2 );
+            background-color: @gray-dark;
+        }
+
+        #up-button {
+            width: 4px * @scale;
+            height: 26px * @scale;
+            top: 164px * @scale;
+            left: ceil( -3px * @scale * 2 );
+            background-color: @gray-dark;
+        }
+
+        #down-button {
+            width: 4px * @scale;
+            height: 26px * @scale;
+            top: 224px * @scale;
+            left: ceil( -3px * @scale * 2 );
+            background-color: @gray-dark;
+        }
+
+        #home-button {
+            width: 64px * @scale;
+            height: 64px * @scale;
+            bottom: 50px * @scale;
+            margin: -32px * @scale;
+            border: ceil( 3px * @scale ) solid @gray-dark;
+            .lh-border-radius( 100% );
+        }
+
+        #camera {
+            width: 12px * @scale;
+            height: 12px * @scale;
+            top: 36px * @scale;
+            margin: -6px * @scale;
+            background-color: @gray-dark;
+            .lh-border-radius( 100% );
+        }
+        
+        #mic {
+            width: 6px * @scale;
+            height: 6px * @scale;
+            top: 60px * @scale;
+            margin: -3px * @scale;
+            margin-left: -48px * @scale;
+            background-color: @gray-dark;
+            .lh-border-radius( ceil( 3px * @scale ) );
+        }
+        
+        #receiver {
+            width: 58px * @scale;
+            height: 6px * @scale;
+            top: 60px * @scale;
+            margin: ( -3px * @scale ) ( -29px * @scale );
+            background-color: @gray-dark;
+            .lh-border-radius( ceil( 3px * @scale ) );
+        }
+    }
+
+    //  the bullets
+    >nav {
+        position: absolute;
+        bottom: 7%;
+        width: 100%;
+        height: 12px * @scale;
+        margin: ( -6px * @scale ) 0;
+        text-align: center;
+        pointer-events: none;
+
+        ul {
+            padding: 0;
+            margin: 0;
+            height: 12px * @scale;
+        }
+
+        li {
+            display: inline-block;
+            vertical-align: top;
+            position: relative;
+            width: 12px * @scale;
+            height: 12px * @scale;
+            background-color: @gray-dark;
+            .lh-border-radius( 100% );
+
+            +li { margin-left: 60px * @scale; }
+
+            i {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                opacity: 0;
+                background-color: @brand-primary;
+                .lh-border-radius( 100% );
+            }
+
+            &.active i {
+                opacity: 1;
+            }
+        }
+        
+        &.animate li i {
+            .lh-transition( opacity .2s @ease );
+        }
+    }
+}
+
+#intro {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin: ( -1136px * @scale / 2 ) ( -640px * @scale / 2 );
+    width:  (  640px * @scale );
+    height: ( 1136px * @scale );
+    .disable-user-select;
+
+    &.with-statusbar {
+        .carousel {
+            >ul { padding: ( 110px * @scale ) 0 0; }
+            >div { top: 56%; }
+            >nav { bottom: 5%; }
+        }
+        #ios-statusbar {
+            display: block;
+        }
+    }
+    
+    //  the moveable strip stages
+    .pane {
+        p {
+            white-space: pre-line;
+            margin: 0;
+        }
+
+        &:nth-child(n+2) p {
+            margin-top: @font-size-base * @line-height-base / 2;
+        }
+    }
+
+    //  the app UI
+    //
+    #menubar {
+        &, #app-name {
+            height: 42px * @scale;
+            margin-bottom: 6px * @scale;
+        }
+
+        #menu-toggle {
+            width: 20px * @scale;
+            height: 14px * @scale;
+            margin: 14px * @scale;
+            float: left;
+
+            svg {
+                display: block;
+            }
+        }
+
+        #app-name {
+            float: left;
+            width: 100%;
+            margin-left: -48px * @scale;
+            line-height: 40px * @scale;
+            font-size: 22px * @scale;
+            font-weight: 500;
+            color: @gray-dark;
+            text-align: center;
+        }
+    }
+
+    #feed {
+        height: ( 526px - 42px - 6px ) * @scale;
+        padding: 0;
+        margin: 0;
+        overflow: hidden;
+
+        li {
+            height: ( 169px + 66px ) * @scale;
+            margin-bottom: 12px * @scale;
+
+            .track-imagery {
+                height: 169px * @scale;
+                position: relative;
+                background-image: url('/images/intro-track-imagery-pattern.svg');
+                background-repeat: repeat;
+                background-position: center top;
+                background-size: auto 100%;
+
+                .play {
+                    position: absolute;
+                    left: 53%;
+                    top: 50%;
+                    width: 50px * @tapScale * @scale;
+                    height: 50px * @tapScale * @scale;
+                    margin: -25px * @tapScale * @scale;
+                    .lh-transform( scale( 1 / @tapScale ) );
+                    background: url('/images/intro-play-btn.svg') no-repeat center top;
+                    background-size: 100% auto;
+                    opacity: 0;
+
+                    &.ng-enter {
+                        .lh-animation( triggerTapPlay .6s both );
+                        .animation-timing-function( cubic-bezier( .2, .2, .2, 1 ) );
+                    }
+                }
+            }
+
+            .track-info {
+                height: 66px * @scale;
+
+                .avatar {
+                    float: left;
+                    width: 46px * @scale;
+                    height: 46px * @scale;
+                    margin: ( 10px * @scale ) ( 16px * @scale );
+                    background: url('/images/intro-avatar.svg') no-repeat center top;
+                    background-size: 100% auto;
+                }
+
+                .lines {
+                    float: left;
+                    width: 100px * @scale;
+                    height: 26px * @scale;
+                    margin: ( 20px * @scale ) ( 4px * @scale );
+
+                    &:before, &:after {
+                        content: '';
+                        display: block;
+                        height: 10px * @scale;
+                        background-color: @gray-dark;
+                    }
+
+                    &:after {
+                        margin-top: 6px * @scale;
+                        width: 60%;
+                    }
+                }
+
+                .heart {
+                    float: right;
+                    width: 26px * @scale;
+                    height: 24px * @scale;
+                    margin: 20px * @scale;
+                    background: url('/images/intro-heart-outline.svg') no-repeat center;
+                    background-size: 100% auto;
+
+                    &.loved {
+                        background-image: url('/images/intro-heart.svg');
+                    }
+
+                    .love {
+                        height: 100% * @tapScale;
+                        width: 100% * @tapScale;
+                        margin: ( 100% - ( 100 * @tapScale ) ) / 2;
+                        background: url('/images/intro-heart.svg') no-repeat center;
+                        background-size: 100% auto;
+                        opacity: 0;
+
+                        &.ng-enter {
+                            .lh-animation( triggerTapHeart .6s both );
+                            .animation-timing-function( cubic-bezier( .2, .2, .2, 1 ) );
+                        }
+                    }
+                }
+            }
+
+            &.new {
+                .lh-animation( incomingTrack .5s both );
+                .animation-timing-function( cubic-bezier( 0, .4, .6, 1 ) );
+            }
+
+            &.scrolling {
+                .lh-animation( digFeed 1.5s both );
+                .animation-timing-function( cubic-bezier( 0, .6, .3, 1 ) );
+
+                &.ng-leave {
+                    .lh-animation( none );
+                }
+            }
+        }
+    }
+
+    #mini-player {
+        position: absolute;
+        z-index: 1;
+        left: 0;
+        bottom: -12px * @scale;
+        height: 72px * @scale;
+        width: 100%;
+        background-color: @gray-offBlack;
+
+        #player-progress-bar {
+            height: 6px * @scale;
+            margin: ( -3px * @scale ) 0;
+            background-color: @gray-dark;
+
+            #play-progress {
+                height: 100%;
+                background-color: @brand-primary;
+                .lh-transform-origin( 0 );
+                .lh-transform( scaleX( 0 ) );
+            
+                &.ng-enter {
+                    .lh-animation( playProgress 10s linear both );
+                }
+            }
+        }
+
+        #player-btn {
+            float: left;
+            width: 40px * @scale;
+            height: 40px * @scale;
+            margin: ( 10px * @scale ) ( 12px * @scale );
+            background: url('/images/intro-pause-btn.svg') no-repeat center;
+            background-size: 45% auto;
+            border: ( 2px * @scale ) solid @brand-primary;
+            .lh-border-radius( 100% );
+        }
+
+        #playing-info {
+            float: left;
+            width: 100px * @scale;
+            height: 26px * @scale;
+            margin: ( 16px * @scale ) ( 8px * @scale );
+
+            &:before, &:after {
+                content: '';
+                display: block;
+                height: 10px * @scale;
+                background-color: @gray-darker;
+            }
+
+            &:after {
+                margin-top: 6px * @scale;
+                width: 60%;
+            }
+        }
+    
+        &.ng-enter {
+            .lh-animation( popUpPlayer .3s linear both );
+        }
+
+        &.ng-leave {
+            .lh-animation( popDownPlayer .15s cubic-bezier( .6, 0, 1, .4 ) both );
+        }
+    }
+}
+
+@-webkit-keyframes triggerTapHeart {
+    0%  { opacity: 1; -webkit-transform: scale( 1 / @tapScale ) translateY( 0 ); }
+    100%{ opacity: 0; -webkit-transform: scale( 1 ) translateY( 6% ); }
+};
+@-moz-keyframes triggerTapHeart {
+    0%  { opacity: 1; -moz-transform: scale( 1 / @tapScale ) translateY( 0 ); }
+    100%{ opacity: 0; -moz-transform: scale( 1 ) translateY( 6% ); }
+};
+@-o-keyframes triggerTapHeart {
+    0%  { opacity: 1; -o-transform: scale( 1 / @tapScale ) translateY( 0 ); }
+    100%{ opacity: 0; -o-transform: scale( 1 ) translateY( 6% ); }
+};
+@keyframes triggerTapHeart {
+    0%  { opacity: 1; transform: scale( 1 / @tapScale ) translateY( 0 ); }
+    100%{ opacity: 0; transform: scale( 1 ) translateY( 6% ); }
+};
+
+@-webkit-keyframes triggerTapPlay {
+    0%  { opacity: 1; -webkit-transform: scale( 1 / @tapScale ) translateX( 0 ); }
+    100%{ opacity: 0; -webkit-transform: scale( 1 ) translateX( 6% ); }
+};
+@-moz-keyframes triggerTapPlay {
+    0%  { opacity: 1; -moz-transform: scale( 1 / @tapScale ) translateX( 0 ); }
+    100%{ opacity: 0; -moz-transform: scale( 1 ) translateX( 6% ); }
+};
+@-o-keyframes triggerTapPlay {
+    0%  { opacity: 1; -o-transform: scale( 1 / @tapScale ) translateX( 0 ); }
+    100%{ opacity: 0; -o-transform: scale( 1 ) translateX( 6% ); }
+};
+@keyframes triggerTapPlay {
+    0%  { opacity: 1; transform: scale( 1 / @tapScale ) translateX( 0 ); }
+    100%{ opacity: 0; transform: scale( 1 ) translateX( 6% ); }
+};
+
+@-webkit-keyframes incomingTrack {
+    0%  { opacity: 0; height: 0; }
+    50% { opacity: 0;                -webkit-transform: scale( .8 ); }
+    70% {             height: ( 169px + 66px ) * @scale; }
+    100%{ opacity: 1;                -webkit-transform: scale( 1 ); }
+};
+@-moz-keyframes incomingTrack {
+    0%  { opacity: 0; height: 0; }
+    50% { opacity: 0;                -moz-transform: scale( .8 ); }
+    70% {             height: ( 169px + 66px ) * @scale; }
+    100%{ opacity: 1;                -moz-transform: scale( 1 ); }
+};
+@-o-keyframes incomingTrack {
+    0%  { opacity: 0; height: 0; }
+    50% { opacity: 0;                -o-transform: scale( .8 ); }
+    70% {             height: ( 169px + 66px ) * @scale; }
+    100%{ opacity: 1;                -o-transform: scale( 1 ); }
+};
+@keyframes incomingTrack {
+    0%  { opacity: 0; height: 0; }
+    50% { opacity: 0;                transform: scale( .8 ); }
+    70% {             height: ( 169px + 66px ) * @scale; }
+    100%{ opacity: 1;                transform: scale( 1 ); }
+};
+
+@tracksToScroll: 2;
+@trackPxToScroll: -( 169px + 66px + 12px ) * @scale * @tracksToScroll;
+
+@-webkit-keyframes digFeed {
+    0%  { margin-top: 0; }
+    50% { margin-top: @trackPxToScroll * .3; }
+    55% { margin-top: @trackPxToScroll * .35; }
+    60% { margin-top: @trackPxToScroll * .35; }
+    100%{ margin-top: @trackPxToScroll; }
+};
+@-moz-keyframes digFeed {
+    0%  { margin-top: 0; }
+    50% { margin-top: @trackPxToScroll * .3; }
+    55% { margin-top: @trackPxToScroll * .35; }
+    60% { margin-top: @trackPxToScroll * .35; }
+    100%{ margin-top: @trackPxToScroll; }
+};
+@-o-keyframes digFeed {
+    0%  { margin-top: 0; }
+    50% { margin-top: @trackPxToScroll * .3; }
+    55% { margin-top: @trackPxToScroll * .35; }
+    60% { margin-top: @trackPxToScroll * .35; }
+    100%{ margin-top: @trackPxToScroll; }
+};
+@keyframes digFeed {
+    0%  { margin-top: 0; }
+    50% { margin-top: @trackPxToScroll * .3; }
+    55% { margin-top: @trackPxToScroll * .35; }
+    60% { margin-top: @trackPxToScroll * .35; }
+    100%{ margin-top: @trackPxToScroll; }
+};
+
+@-webkit-keyframes popUpPlayer {
+    0%  { -webkit-transform: translateY( 100% ); }
+    60% { -webkit-transform: translateY( -15% ); }
+    100%{ -webkit-transform: translateY( 0% ); }
+};
+@-moz-keyframes popUpPlayer {
+    0%  { -moz-transform: translateY( 100% ); }
+    60% { -moz-transform: translateY( -15% ); }
+    100%{ -moz-transform: translateY( 0% ); }
+};
+@-o-keyframes popUpPlayer {
+    0%  { -o-transform: translateY( 100% ); }
+    60% { -o-transform: translateY( -15% ); }
+    100%{ -o-transform: translateY( 0% ); }
+};
+@keyframes popUpPlayer {
+    0%  { transform: translateY( 100% ); }
+    60% { transform: translateY( -15% ); }
+    100%{ transform: translateY( 0% ); }
+};
+
+@-webkit-keyframes popDownPlayer {
+    0%  { -webkit-transform: translateY( 0% ); }
+    100%{ -webkit-transform: translateY( 100% ); }
+};
+@-moz-keyframes popDownPlayer {
+    0%  { -moz-transform: translateY( 0% ); }
+    100%{ -moz-transform: translateY( 100% ); }
+};
+@-o-keyframes popDownPlayer {
+    0%  { -o-transform: translateY( 0% ); }
+    100%{ -o-transform: translateY( 100% ); }
+};
+@keyframes popDownPlayer {
+    0%  { transform: translateY( 0% ); }
+    100%{ transform: translateY( 100% ); }
+};
+
+@-webkit-keyframes playProgress {
+    0%  { -webkit-transform: scaleX( 0 ); }
+    100%{ -webkit-transform: scaleX( 1 ); }
+};
+@-moz-keyframes playProgress {
+    0%  { -moz-transform: scaleX( 0 ); }
+    100%{ -moz-transform: scaleX( 1 ); }
+};
+@-o-keyframes playProgress {
+    0%  { -o-transform: scaleX( 0 ); }
+    100%{ -o-transform: scaleX( 1 ); }
+};
+@keyframes playProgress {
+    0%  { transform: scaleX( 0 ); }
+    100%{ transform: scaleX( 1 ); }
+};
+
+
+.view.home {
+
+    #intro {
+        .box-shadow( 0 1px 4px rgba(0,0,0, 0.3) );
+    }
+}
+
+.view.phone {
+    background: url('/images/iPhone-5-white-silver.png') no-repeat center;
+    background-size: auto ( 1620px * @scale );
+    position: relative;
+    height: 100%;
+    .lh-transform( translate3d(0,0,0) scale3d(1,1,1) );
+    .lh-transform-style( preserve-3d );
+
+    #backdrop {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: @gray-darker;
+        
+        video {
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    .carousel {
+        z-index: 1;
+        overflow: hidden;
+    }
+
+    #ios-statusbar {
+        display: none;
+        position: absolute;
+        z-index: 2;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 40px * @scale;
+        pointer-events: none;
+        // background: url('/images/ios7-statusbar-white.svg') no-repeat center top;
+        // background-size: 100% auto;
+    }
+}
+
+
+
+
+//``````````````````````````````
+//  Forms
+//
+.form-control {
+    padding: 6px 0;
+    border-width: 0 0 1px 0;
+    // border-color: white;
+    
+    .lh-placeholder( mix(@gray-light, @gray-lighter) );
+}
+
+label {
+    span {
+        display: none;
+    }
+}
+
+
+

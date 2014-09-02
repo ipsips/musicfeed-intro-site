@@ -1,0 +1,14 @@
+{
+	"name": "musicfeed-intro",
+	"script": "app.js",
+	"ignoreWatch": [
+		"[\\/\\\\]\\./",
+		"node_modules",
+		".tmp",
+		"assets",
+		"media",
+		"views"
+	],
+	"watch": "true",
+	"cwd": "/Users/ips/Desktop/musicfeed/intro-site"
+}
