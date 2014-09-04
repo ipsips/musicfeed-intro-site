@@ -83,7 +83,7 @@ angular.module('appDirectives').directive('introAppUi', function( $q, $timeout, 
             
                 clearTimeout( incomingTimer );
                 clearInterval( incomingInt );
-                resetTracks('new');
+                // resetTracks('new');
             
             }
 
@@ -95,7 +95,7 @@ angular.module('appDirectives').directive('introAppUi', function( $q, $timeout, 
                 playTimer = setTimeout( function() { 
                     playTrack( 'initial' );
                 }, 500 );
-                playInt = setInterval( playTrack, 12000 ); // that long because we want to show the full player too
+                playInt = setInterval( playTrack, 8000 ); // that long because we want to show the full player too
             
             }
             
@@ -106,6 +106,7 @@ angular.module('appDirectives').directive('introAppUi', function( $q, $timeout, 
                 clearTimeout( playTimer );
                 clearInterval( playInt );
                 $animate.removeClass( angular.element('#feed li .play', $element ), 'click' );
+                $animate.removeClass( angular.element('#player', $element ), 'full' );
                 $animate.removeClass( angular.element('#player', $element ), 'visible', function() {
                     $animate.removeClass( angular.element('#play-progress', $element ), 'playing' );
                 });
@@ -121,7 +122,7 @@ angular.module('appDirectives').directive('introAppUi', function( $q, $timeout, 
                 loveTimer = setTimeout( function() { 
                     loveTrack( 'initial' );
                 }, 500 );
-                loveInt = setInterval( loveTrack, 3000 );
+                loveInt = setInterval( loveTrack, 2500 );
             
             }
             
@@ -225,14 +226,11 @@ angular.module('appDirectives').directive('introAppUi', function( $q, $timeout, 
                     return;
 
                 $animate.addClass( angular.element('#feed li .play', $element ), 'click' );
-                
                 animEndTime = Date.now() + 600;
 
                 invokePlayer();
 
             }, 300 ); // wait a lil (after scroll/scene entry) & tap to play
-
-            animEndTime = Date.now() + 300;
 
         }
 
@@ -243,13 +241,15 @@ angular.module('appDirectives').directive('introAppUi', function( $q, $timeout, 
                 if ( $scope.currentPane !== 1 )
                     return;
 
-                var miniPlayer = angular.element('#player', $element );
+                var player = angular.element('#player', $element );
             
-                if ( miniPlayer.hasClass('visible') )
+                if ( player.hasClass('visible') )
                     restartTrack();
 
-                else
-                    $animate.addClass( miniPlayer, 'visible', restartTrack );
+                else {
+                    $animate.addClass( player, 'visible', restartTrack );
+                    animEndTime = Date.now() + 300;
+                }
             
             }, 300 ); // wait jus a little after play-tap
             
@@ -273,6 +273,38 @@ angular.module('appDirectives').directive('introAppUi', function( $q, $timeout, 
         function startTrack() {
             
             $animate.addClass( angular.element('#play-progress', $element ), 'playing' );
+
+            openFullPlayer();
+
+        }
+
+        function openFullPlayer() {
+
+            $timeout(function() {
+
+                if ( $scope.currentPane !== 1 )
+                    return;
+
+                $animate.addClass( angular.element('#player', $element ), 'full' );
+
+                animEndTime = Date.now() + 500;
+
+                closeFullPlayer();
+
+            }, 1500 ); // let the mini-player play a lil before opening the full player
+
+        }
+
+        function closeFullPlayer() {
+
+            $timeout(function() {
+
+                if ( $scope.currentPane !== 1 )
+                    return;
+
+                $animate.removeClass( angular.element('#player', $element ), 'full' );
+
+            }, 3500 ); // let the full-player play a lil before closing it again
 
         }
 
@@ -357,8 +389,6 @@ angular.module('appDirectives').directive('introAppUi', function( $q, $timeout, 
 
             }, 300 ); // wait a lil (after scroll/scene entry) & remove track
 
-            animEndTime = Date.now() + 300;
-
         }
 
         function clickTrash() {
@@ -375,8 +405,6 @@ angular.module('appDirectives').directive('introAppUi', function( $q, $timeout, 
                 $timeout( outgoingTrack, 200 );
 
             }, 300 );
-            
-            animEndTime = Date.now() + 300;
 
         }
 
