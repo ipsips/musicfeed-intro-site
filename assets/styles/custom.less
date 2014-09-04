@@ -43,6 +43,9 @@ a {
 
 @scale: .5;
 @tapScale: 2.5;
+@playTapScale: 2;
+@oneTracksPxToScroll: -( 169px + 66px + 12px ) * @scale;
+@twoTracksPxToScroll: -( 169px + 66px + 12px ) * @scale * 2;
 
 .carousel {
     position: absolute;
@@ -57,6 +60,7 @@ a {
     }
 
     //  the moveable strip
+    //
     >ul {
         padding: ( 60px * @scale ) 0 0;
         margin: 0;
@@ -79,8 +83,24 @@ a {
             text-align: center;
         }
     }
+    
+    //  the moveable strip stages
+    //
+    .pane {
+        color: white;
+
+        p {
+            white-space: pre-line;
+            margin: 0;
+        }
+
+        &:nth-child(n+2) p {
+            margin-top: @font-size-base * @line-height-base / 2;
+        }
+    }
 
     //  the fixed phone wireframe
+    //
     >div {
         top: 53%;
         width: 340px * @scale;
@@ -97,6 +117,7 @@ a {
             margin: ( -526px * @scale / 2 ) ( -300px * @scale / 2 );
             border: ceil( 1px * @scale ) solid fade( @gray-dark, ( min( 100%, 100% * @scale ) ) );
             overflow: hidden;
+            .lh-transform( translate3d(0,0,0) );
         }
         
         &, #lock-button, #mute-button, #up-button, #down-button, #home-button, #camera, #mic, #receiver, #display {
@@ -175,6 +196,7 @@ a {
     }
 
     //  the bullets
+    //
     >nav {
         position: absolute;
         bottom: 7%;
@@ -199,7 +221,7 @@ a {
             background-color: @gray-dark;
             .lh-border-radius( 100% );
 
-            +li { margin-left: 60px * @scale; }
+            +li { margin-left: 24px * @scale; }
 
             i {
                 position: absolute;
@@ -208,7 +230,7 @@ a {
                 width: 100%;
                 height: 100%;
                 opacity: 0;
-                background-color: @brand-primary;
+                background-color: @gray-light;
                 .lh-border-radius( 100% );
             }
 
@@ -219,39 +241,6 @@ a {
         
         &.animate li i {
             .lh-transition( opacity .2s @ease );
-        }
-    }
-}
-
-#intro {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    margin: ( -1136px * @scale / 2 ) ( -640px * @scale / 2 );
-    width:  (  640px * @scale );
-    height: ( 1136px * @scale );
-    .disable-user-select;
-
-    &.with-statusbar {
-        .carousel {
-            >ul { padding: ( 110px * @scale ) 0 0; }
-            >div { top: 56%; }
-            >nav { bottom: 5%; }
-        }
-        #ios-statusbar {
-            display: block;
-        }
-    }
-    
-    //  the moveable strip stages
-    .pane {
-        p {
-            white-space: pre-line;
-            margin: 0;
-        }
-
-        &:nth-child(n+2) p {
-            margin-top: @font-size-base * @line-height-base / 2;
         }
     }
 
@@ -293,46 +282,129 @@ a {
         overflow: hidden;
 
         li {
-            height: ( 169px + 66px ) * @scale;
-            margin-bottom: 12px * @scale;
+            overflow: hidden;
+            height: ( 169px + 66px + 12px ) * @scale;
+
+            &.new {
+                .lh-animation( incomingTrack .5s cubic-bezier( 0, .4, .6, 1 ) both );
+                &.ng-leave { .lh-animation( none ); }
+            }
+            &.new-red {
+                .track-imagery, .track-info .lines i              { .lh-animation( incomingTrackRedBgColor .715s cubic-bezier( 0, .4, .6, 1 ) both ); }
+                .track-info .avatar path, .track-info .heart path { .lh-animation( incomingTrackRedFillColor .715s cubic-bezier( 0, .4, .6, 1 ) both ); }
+            }
+            &.new-green {
+                .track-imagery, .track-info .lines i              { .lh-animation( incomingTrackGreenBgColor .715s cubic-bezier( 0, .4, .6, 1 ) both ); }
+                .track-info .avatar path, .track-info .heart path { .lh-animation( incomingTrackGreenFillColor .715s cubic-bezier( 0, .4, .6, 1 ) both ); }
+            }
+            &.new-yellow {
+                .track-imagery, .track-info .lines i              { .lh-animation( incomingTrackYellowBgColor .715s cubic-bezier( 0, .4, .6, 1 ) both ); }
+                .track-info .avatar path, .track-info .heart path { .lh-animation( incomingTrackYellowFillColor .715s cubic-bezier( 0, .4, .6, 1 ) both ); }
+            }
+            &.new-blue {
+                .track-imagery, .track-info .lines i              { .lh-animation( incomingTrackBlueBgColor .715s cubic-bezier( 0, .4, .6, 1 ) both ); }
+                .track-info .avatar path, .track-info .heart path { .lh-animation( incomingTrackBlueFillColor .715s cubic-bezier( 0, .4, .6, 1 ) both ); }
+            }
+
+            &.dispose-add { .lh-animation( outgoingTrack .5s cubic-bezier( 0, .4, .6, 1 ) both ); }
+            
+            &.scrolling { margin-top: @twoTracksPxToScroll; }
+            &.scrolling-add { .lh-animation( digFeedByTwo 1.2s cubic-bezier( 0, .6, .3, 1 ) both ); }
+            
+            &.scrolling-one { margin-top: @oneTracksPxToScroll; }
+            &.scrolling-one-add { .lh-animation( digFeedByOne .6s cubic-bezier( 0, .6, .3, 1 ) both ); }
 
             .track-imagery {
-                height: 169px * @scale;
                 position: relative;
-                background-image: url('/images/intro-track-imagery-pattern.svg');
-                background-repeat: repeat;
-                background-position: center top;
-                background-size: auto 100%;
+                height: 169px * @scale;
+                background-color: @gray-dark;
+                .lh-transform( translate3d(0,0,0) );
+                
+                // background-image: url('/images/intro-track-imagery-pattern.svg');
+                // background-repeat: repeat;
+                // background-position: center top;
+                // background-size: auto 100%;
 
                 .play {
                     position: absolute;
                     left: 53%;
                     top: 50%;
-                    width: 50px * @tapScale * @scale;
-                    height: 50px * @tapScale * @scale;
-                    margin: -25px * @tapScale * @scale;
-                    .lh-transform( scale( 1 / @tapScale ) );
+                    width: 50px * @playTapScale * @scale;
+                    height: 50px * @playTapScale * @scale;
+                    margin: -25px * @playTapScale * @scale;
+                    .lh-transform( scale( 1 / @playTapScale ) );
                     background: url('/images/intro-play-btn.svg') no-repeat center top;
                     background-size: 100% auto;
-                    opacity: 0;
+                    visibility: hidden;
 
-                    &.ng-enter {
-                        .lh-animation( triggerTapPlay .6s both );
-                        .animation-timing-function( cubic-bezier( .2, .2, .2, 1 ) );
+                    &.click-add-active { visibility: visible; }
+                    &.click-add { .lh-animation( triggerTapPlay .6s cubic-bezier( .2, .2, .2, 1 ) both ); }
+
+                }
+
+                .remove {
+                    position: absolute;
+                    width: 40%;
+                    height: 100%;
+                    top: 0;
+                    right: 0;
+                    background-color: @brand-primary;
+                    visibility: hidden;
+
+                    &.swiped { visibility: visible; }
+                    &.swiped-add { .lh-animation( swipeRemove .2s cubic-bezier( .4, .4, .5, .9 ) both ); }
+
+
+                    i, b {
+                        display: block;
+                        position: absolute;
+                        left: 50%;
+                        top: 50%;
+                        width: 50px * @scale;
+                        height: 50px * @scale;
+                        margin: -25px * @scale;
+                        background: url('/images/intro-trash.svg') no-repeat center;
+                        background-size: 100% auto;
                     }
+
+                    b {
+                        z-index: 1;
+                        width: 50px * @scale * @tapScale;
+                        height: 50px * @scale * @tapScale;
+                        margin: -25px * @scale * @tapScale;
+                        visibility: hidden;
+                    }
+
+                    b.click-add-active { visibility: visible; }
+                    b.click-add { .lh-animation( triggerTap .6s cubic-bezier( .2, .2, .2, 1 ) both ); }
+
                 }
             }
 
+            // &:nth-child( 1 ) .track-info .avatar { background-color: pink; }
+            // &:nth-child( 2 ) .track-info .avatar { background-color: green; }
+            // &:nth-child( 3 ) .track-info .avatar { background-color: yellow; }
+
             .track-info {
                 height: 66px * @scale;
+                position: relative;
+                .lh-transform( translate3d(0,0,0) );
 
                 .avatar {
                     float: left;
                     width: 46px * @scale;
                     height: 46px * @scale;
                     margin: ( 10px * @scale ) ( 16px * @scale );
-                    background: url('/images/intro-avatar.svg') no-repeat center top;
-                    background-size: 100% auto;
+                    // background: url('/images/intro-avatar.svg') no-repeat center top;
+                    // background-size: 100% auto;
+
+                    svg {
+                        display: block;
+                    }
+
+                    path {
+                        fill: @gray-dark;
+                    }
                 }
 
                 .lines {
@@ -341,86 +413,94 @@ a {
                     height: 26px * @scale;
                     margin: ( 20px * @scale ) ( 4px * @scale );
 
-                    &:before, &:after {
-                        content: '';
+                    i {
                         display: block;
                         height: 10px * @scale;
                         background-color: @gray-dark;
-                    }
 
-                    &:after {
-                        margin-top: 6px * @scale;
-                        width: 60%;
+                        &:nth-child(2) {
+                            margin-top: 6px * @scale;
+                            width: 60%;
+                        }
                     }
                 }
 
                 .heart {
-                    float: right;
+                    position: absolute;
+                    right: 20px * @scale;
+                    top: 20px * @scale;
                     width: 26px * @scale;
-                    height: 24px * @scale;
-                    margin: 20px * @scale;
-                    background: url('/images/intro-heart-outline.svg') no-repeat center;
-                    background-size: 100% auto;
+                    height: 26px * @scale;
+                    // background: url('/images/intro-heart-outline.svg') no-repeat center;
+                    // background-size: 100% auto;
 
-                    &.loved {
-                        background-image: url('/images/intro-heart.svg');
+                    svg {
+                        display: block;
                     }
 
-                    .love {
+                    path {
+                        fill: @gray-dark;
+                    }
+
+                    i, b {
+                        display: block;
+                        position: absolute;
+                        z-index: 1;
+                        left: 0;
+                        top: 0;
+                        width: 100%;
+                        height: 100%;
+                        background: url('/images/intro-heart.svg') no-repeat center;
+                        background-size: 100% auto;
+                        visibility: hidden;
+                    }
+
+                    b {
+                        z-index: 1;
                         height: 100% * @tapScale;
                         width: 100% * @tapScale;
                         margin: ( 100% - ( 100 * @tapScale ) ) / 2;
-                        background: url('/images/intro-heart.svg') no-repeat center;
-                        background-size: 100% auto;
-                        opacity: 0;
-
-                        &.ng-enter {
-                            .lh-animation( triggerTapHeart .6s both );
-                            .animation-timing-function( cubic-bezier( .2, .2, .2, 1 ) );
-                        }
                     }
-                }
-            }
 
-            &.new {
-                .lh-animation( incomingTrack .5s both );
-                .animation-timing-function( cubic-bezier( 0, .4, .6, 1 ) );
-            }
+                    i.loved,
+                    i.loved-remove-active,
+                    b.beat-add-active { visibility: visible; }
 
-            &.scrolling {
-                .lh-animation( digFeed 1.5s both );
-                .animation-timing-function( cubic-bezier( 0, .6, .3, 1 ) );
+                    i.loved-remove { .lh-animation( fadeOut .2s @ease both ); }
+                    b.beat-add { .lh-animation( triggerTapHeart .6s cubic-bezier( .2, .2, .2, 1 ) both ); }
 
-                &.ng-leave {
-                    .lh-animation( none );
                 }
             }
         }
     }
 
-    #mini-player {
+    #player {
         position: absolute;
         z-index: 1;
         left: 0;
         bottom: -12px * @scale;
         height: 72px * @scale;
         width: 100%;
-        background-color: @gray-offBlack;
+        background-color: @gray-darkest;
+        visibility: hidden;
+
+        &.visible, &.visible-remove-active { visibility: visible; }
+        &.visible-add { .lh-animation( popUpPlayer .3s linear both ); }
+        &.visible-remove { .lh-animation( popDownPlayer .15s cubic-bezier( .6, 0, 1, .4 ) both ); }
 
         #player-progress-bar {
             height: 6px * @scale;
             margin: ( -3px * @scale ) 0;
-            background-color: @gray-dark;
+            background-color: @gray-darker;
 
             #play-progress {
                 height: 100%;
                 background-color: @brand-primary;
+                visibility: hidden;
                 .lh-transform-origin( 0 );
-                .lh-transform( scaleX( 0 ) );
-            
-                &.ng-enter {
-                    .lh-animation( playProgress 10s linear both );
-                }
+
+                &.playing { visibility: visible; }
+                &.playing-add { .lh-animation( playProgress 20s linear both ); }
             }
         }
 
@@ -430,9 +510,7 @@ a {
             height: 40px * @scale;
             margin: ( 10px * @scale ) ( 12px * @scale );
             background: url('/images/intro-pause-btn.svg') no-repeat center;
-            background-size: 45% auto;
-            border: ( 2px * @scale ) solid @brand-primary;
-            .lh-border-radius( 100% );
+            background-size: 100% auto;
         }
 
         #playing-info {
@@ -453,163 +531,435 @@ a {
                 width: 60%;
             }
         }
-    
-        &.ng-enter {
-            .lh-animation( popUpPlayer .3s linear both );
-        }
-
-        &.ng-leave {
-            .lh-animation( popDownPlayer .15s cubic-bezier( .6, 0, 1, .4 ) both );
-        }
     }
+}
+
+@-webkit-keyframes incomingTrack {
+    0%  { opacity: 0; height: 0; }
+    50% { opacity: 0;                -webkit-transform: scale( .8 ); }
+    70% {             height: ( 169px + 66px + 12px ) * @scale; }
+    100%{ opacity: 1;                -webkit-transform: scale( 1 ); }
+}
+@-moz-keyframes incomingTrack {
+    0%  { opacity: 0; height: 0; }
+    50% { opacity: 0;                -moz-transform: scale( .8 ); }
+    70% {             height: ( 169px + 66px + 12px ) * @scale; }
+    100%{ opacity: 1;                -moz-transform: scale( 1 ); }
+}
+@-o-keyframes incomingTrack {
+    0%  { opacity: 0; height: 0; }
+    50% { opacity: 0;                -o-transform: scale( .8 ); }
+    70% {             height: ( 169px + 66px + 12px ) * @scale; }
+    100%{ opacity: 1;                -o-transform: scale( 1 ); }
+}
+@keyframes incomingTrack {
+    0%  { opacity: 0; height: 0; }
+    50% { opacity: 0;                transform: scale( .8 ); }
+    70% {             height: ( 169px + 66px + 12px ) * @scale; }
+    100%{ opacity: 1;                transform: scale( 1 ); }
+}
+
+@-webkit-keyframes incomingTrackRedBgColor {
+    0%  { background-color: @brand-primary; }
+    70% { background-color: @brand-primary; }
+    100%{ background-color: @gray-dark; }
+}
+@-moz-keyframes incomingTrackRedBgColor {
+    0%  { background-color: @brand-primary; }
+    70% { background-color: @brand-primary; }
+    100%{ background-color: @gray-dark; }
+}
+@-o-keyframes incomingTrackRedBgColor {
+    0%  { background-color: @brand-primary; }
+    70% { background-color: @brand-primary; }
+    100%{ background-color: @gray-dark; }
+}
+@keyframes incomingTrackRedBgColor {
+    0%  { background-color: @brand-primary; }
+    70% { background-color: @brand-primary; }
+    100%{ background-color: @gray-dark; }
+}
+
+@-webkit-keyframes incomingTrackRedFillColor {
+    0%  { fill: @brand-primary; }
+    70% { fill: @brand-primary; }
+    100%{ fill: @gray-dark; }
+}
+@-moz-keyframes incomingTrackRedFillColor {
+    0%  { fill: @brand-primary; }
+    70% { fill: @brand-primary; }
+    100%{ fill: @gray-dark; }
+}
+@-o-keyframes incomingTrackRedFillColor {
+    0%  { fill: @brand-primary; }
+    70% { fill: @brand-primary; }
+    100%{ fill: @gray-dark; }
+}
+@keyframes incomingTrackRedFillColor {
+    0%  { fill: @brand-primary; }
+    70% { fill: @brand-primary; }
+    100%{ fill: @gray-dark; }
+}
+
+@newTrackGreen: #47cc5e;
+
+@-webkit-keyframes incomingTrackGreenBgColor {
+    0%  { background-color: @newTrackGreen; }
+    70% { background-color: @newTrackGreen; }
+    100%{ background-color: @gray-dark; }
+}
+@-moz-keyframes incomingTrackGreenBgColor {
+    0%  { background-color: @newTrackGreen; }
+    70% { background-color: @newTrackGreen; }
+    100%{ background-color: @gray-dark; }
+}
+@-o-keyframes incomingTrackGreenBgColor {
+    0%  { background-color: @newTrackGreen; }
+    70% { background-color: @newTrackGreen; }
+    100%{ background-color: @gray-dark; }
+}
+@keyframes incomingTrackGreenBgColor {
+    0%  { background-color: @newTrackGreen; }
+    70% { background-color: @newTrackGreen; }
+    100%{ background-color: @gray-dark; }
+}
+
+@-webkit-keyframes incomingTrackGreenFillColor {
+    0%  { fill: @newTrackGreen; }
+    70% { fill: @newTrackGreen; }
+    100%{ fill: @gray-dark; }
+}
+@-moz-keyframes incomingTrackGreenFillColor {
+    0%  { fill: @newTrackGreen; }
+    70% { fill: @newTrackGreen; }
+    100%{ fill: @gray-dark; }
+}
+@-o-keyframes incomingTrackGreenFillColor {
+    0%  { fill: @newTrackGreen; }
+    70% { fill: @newTrackGreen; }
+    100%{ fill: @gray-dark; }
+}
+@keyframes incomingTrackGreenFillColor {
+    0%  { fill: @newTrackGreen; }
+    70% { fill: @newTrackGreen; }
+    100%{ fill: @gray-dark; }
+}
+
+@newTrackYellow: #ffcc02;
+
+@-webkit-keyframes incomingTrackYellowBgColor {
+    0%  { background-color: @newTrackYellow; }
+    70% { background-color: @newTrackYellow; }
+    100%{ background-color: @gray-dark; }
+}
+@-moz-keyframes incomingTrackYellowBgColor {
+    0%  { background-color: @newTrackYellow; }
+    70% { background-color: @newTrackYellow; }
+    100%{ background-color: @gray-dark; }
+}
+@-o-keyframes incomingTrackYellowBgColor {
+    0%  { background-color: @newTrackYellow; }
+    70% { background-color: @newTrackYellow; }
+    100%{ background-color: @gray-dark; }
+}
+@keyframes incomingTrackYellowBgColor {
+    0%  { background-color: @newTrackYellow; }
+    70% { background-color: @newTrackYellow; }
+    100%{ background-color: @gray-dark; }
+}
+
+@-webkit-keyframes incomingTrackYellowFillColor {
+    0%  { fill: @newTrackYellow; }
+    70% { fill: @newTrackYellow; }
+    100%{ fill: @gray-dark; }
+}
+@-moz-keyframes incomingTrackYellowFillColor {
+    0%  { fill: @newTrackYellow; }
+    70% { fill: @newTrackYellow; }
+    100%{ fill: @gray-dark; }
+}
+@-o-keyframes incomingTrackYellowFillColor {
+    0%  { fill: @newTrackYellow; }
+    70% { fill: @newTrackYellow; }
+    100%{ fill: @gray-dark; }
+}
+@keyframes incomingTrackYellowFillColor {
+    0%  { fill: @newTrackYellow; }
+    70% { fill: @newTrackYellow; }
+    100%{ fill: @gray-dark; }
+}
+
+@newTrackBlue: #5ac8fa;
+
+@-webkit-keyframes incomingTrackBlueBgColor {
+    0%  { background-color: @newTrackBlue; }
+    70% { background-color: @newTrackBlue; }
+    100%{ background-color: @gray-dark; }
+}
+@-moz-keyframes incomingTrackBlueBgColor {
+    0%  { background-color: @newTrackBlue; }
+    70% { background-color: @newTrackBlue; }
+    100%{ background-color: @gray-dark; }
+}
+@-o-keyframes incomingTrackBlueBgColor {
+    0%  { background-color: @newTrackBlue; }
+    70% { background-color: @newTrackBlue; }
+    100%{ background-color: @gray-dark; }
+}
+@keyframes incomingTrackBlueBgColor {
+    0%  { background-color: @newTrackBlue; }
+    70% { background-color: @newTrackBlue; }
+    100%{ background-color: @gray-dark; }
+}
+
+@-webkit-keyframes incomingTrackBlueFillColor {
+    0%  { fill: @newTrackBlue; }
+    70% { fill: @newTrackBlue; }
+    100%{ fill: @gray-dark; }
+}
+@-moz-keyframes incomingTrackBlueFillColor {
+    0%  { fill: @newTrackBlue; }
+    70% { fill: @newTrackBlue; }
+    100%{ fill: @gray-dark; }
+}
+@-o-keyframes incomingTrackBlueFillColor {
+    0%  { fill: @newTrackBlue; }
+    70% { fill: @newTrackBlue; }
+    100%{ fill: @gray-dark; }
+}
+@keyframes incomingTrackBlueFillColor {
+    0%  { fill: @newTrackBlue; }
+    70% { fill: @newTrackBlue; }
+    100%{ fill: @gray-dark; }
+}
+
+@-webkit-keyframes triggerTapPlay {
+    0%  { opacity: 1; -webkit-transform: scale( 1 / @playTapScale ) translateX( 0 ); }
+    100%{ opacity: 0; -webkit-transform: scale( 1 ) translateX( 6% ); }
+}
+@-moz-keyframes triggerTapPlay {
+    0%  { opacity: 1; -moz-transform: scale( 1 / @playTapScale ) translateX( 0 ); }
+    100%{ opacity: 0; -moz-transform: scale( 1 ) translateX( 6% ); }
+}
+@-o-keyframes triggerTapPlay {
+    0%  { opacity: 1; -o-transform: scale( 1 / @playTapScale ) translateX( 0 ); }
+    100%{ opacity: 0; -o-transform: scale( 1 ) translateX( 6% ); }
+}
+@keyframes triggerTapPlay {
+    0%  { opacity: 1; transform: scale( 1 / @playTapScale ) translateX( 0 ); }
+    100%{ opacity: 0; transform: scale( 1 ) translateX( 6% ); }
 }
 
 @-webkit-keyframes triggerTapHeart {
     0%  { opacity: 1; -webkit-transform: scale( 1 / @tapScale ) translateY( 0 ); }
     100%{ opacity: 0; -webkit-transform: scale( 1 ) translateY( 6% ); }
-};
+}
 @-moz-keyframes triggerTapHeart {
     0%  { opacity: 1; -moz-transform: scale( 1 / @tapScale ) translateY( 0 ); }
     100%{ opacity: 0; -moz-transform: scale( 1 ) translateY( 6% ); }
-};
+}
 @-o-keyframes triggerTapHeart {
     0%  { opacity: 1; -o-transform: scale( 1 / @tapScale ) translateY( 0 ); }
     100%{ opacity: 0; -o-transform: scale( 1 ) translateY( 6% ); }
-};
+}
 @keyframes triggerTapHeart {
     0%  { opacity: 1; transform: scale( 1 / @tapScale ) translateY( 0 ); }
     100%{ opacity: 0; transform: scale( 1 ) translateY( 6% ); }
-};
+}
 
-@-webkit-keyframes triggerTapPlay {
-    0%  { opacity: 1; -webkit-transform: scale( 1 / @tapScale ) translateX( 0 ); }
-    100%{ opacity: 0; -webkit-transform: scale( 1 ) translateX( 6% ); }
-};
-@-moz-keyframes triggerTapPlay {
-    0%  { opacity: 1; -moz-transform: scale( 1 / @tapScale ) translateX( 0 ); }
-    100%{ opacity: 0; -moz-transform: scale( 1 ) translateX( 6% ); }
-};
-@-o-keyframes triggerTapPlay {
-    0%  { opacity: 1; -o-transform: scale( 1 / @tapScale ) translateX( 0 ); }
-    100%{ opacity: 0; -o-transform: scale( 1 ) translateX( 6% ); }
-};
-@keyframes triggerTapPlay {
-    0%  { opacity: 1; transform: scale( 1 / @tapScale ) translateX( 0 ); }
-    100%{ opacity: 0; transform: scale( 1 ) translateX( 6% ); }
-};
+@-webkit-keyframes triggerTap {
+    0%  { opacity: 1; -webkit-transform: scale( 1 / @tapScale ); }
+    100%{ opacity: 0; -webkit-transform: scale( 1 ); }
+}
+@-moz-keyframes triggerTap {
+    0%  { opacity: 1; -moz-transform: scale( 1 / @tapScale ); }
+    100%{ opacity: 0; -moz-transform: scale( 1 ); }
+}
+@-o-keyframes triggerTap {
+    0%  { opacity: 1; -o-transform: scale( 1 / @tapScale ); }
+    100%{ opacity: 0; -o-transform: scale( 1 ); }
+}
+@keyframes triggerTap {
+    0%  { opacity: 1; transform: scale( 1 / @tapScale ); }
+    100%{ opacity: 0; transform: scale( 1 ); }
+}
 
-@-webkit-keyframes incomingTrack {
-    0%  { opacity: 0; height: 0; }
+@-webkit-keyframes outgoingTrack {
+    0%  { opacity: 1;                -webkit-transform: scale( 1 ); }
+    30% {             height: ( 169px + 66px + 12px ) * @scale; }
     50% { opacity: 0;                -webkit-transform: scale( .8 ); }
-    70% {             height: ( 169px + 66px ) * @scale; }
-    100%{ opacity: 1;                -webkit-transform: scale( 1 ); }
-};
-@-moz-keyframes incomingTrack {
+    100%{ opacity: 0; height: 0; }
+}
+@-moz-keyframes outgoingTrack {
     0%  { opacity: 0; height: 0; }
     50% { opacity: 0;                -moz-transform: scale( .8 ); }
-    70% {             height: ( 169px + 66px ) * @scale; }
+    70% {             height: ( 169px + 66px + 12px ) * @scale; }
     100%{ opacity: 1;                -moz-transform: scale( 1 ); }
-};
-@-o-keyframes incomingTrack {
+}
+@-o-keyframes outgoingTrack {
     0%  { opacity: 0; height: 0; }
     50% { opacity: 0;                -o-transform: scale( .8 ); }
-    70% {             height: ( 169px + 66px ) * @scale; }
+    70% {             height: ( 169px + 66px + 12px ) * @scale; }
     100%{ opacity: 1;                -o-transform: scale( 1 ); }
-};
-@keyframes incomingTrack {
+}
+@keyframes outgoingTrack {
     0%  { opacity: 0; height: 0; }
     50% { opacity: 0;                transform: scale( .8 ); }
-    70% {             height: ( 169px + 66px ) * @scale; }
+    70% {             height: ( 169px + 66px + 12px ) * @scale; }
     100%{ opacity: 1;                transform: scale( 1 ); }
-};
+}
 
-@tracksToScroll: 2;
-@trackPxToScroll: -( 169px + 66px + 12px ) * @scale * @tracksToScroll;
+@-webkit-keyframes digFeedByTwo {
+    0%  { margin-top: 0; }
+    50% { margin-top: @twoTracksPxToScroll * .3; }
+    55% { margin-top: @twoTracksPxToScroll * .35; }
+    60% { margin-top: @twoTracksPxToScroll * .35; }
+    100%{ margin-top: @twoTracksPxToScroll; }
+}
+@-moz-keyframes digFeedByTwo {
+    0%  { margin-top: 0; }
+    50% { margin-top: @twoTracksPxToScroll * .3; }
+    55% { margin-top: @twoTracksPxToScroll * .35; }
+    60% { margin-top: @twoTracksPxToScroll * .35; }
+    100%{ margin-top: @twoTracksPxToScroll; }
+}
+@-o-keyframes digFeedByTwo {
+    0%  { margin-top: 0; }
+    50% { margin-top: @twoTracksPxToScroll * .3; }
+    55% { margin-top: @twoTracksPxToScroll * .35; }
+    60% { margin-top: @twoTracksPxToScroll * .35; }
+    100%{ margin-top: @twoTracksPxToScroll; }
+}
+@keyframes digFeedByTwo {
+    0%  { margin-top: 0; }
+    50% { margin-top: @twoTracksPxToScroll * .3; }
+    55% { margin-top: @twoTracksPxToScroll * .35; }
+    60% { margin-top: @twoTracksPxToScroll * .35; }
+    100%{ margin-top: @twoTracksPxToScroll; }
+}
 
-@-webkit-keyframes digFeed {
+@-webkit-keyframes digFeedByOne {
     0%  { margin-top: 0; }
-    50% { margin-top: @trackPxToScroll * .3; }
-    55% { margin-top: @trackPxToScroll * .35; }
-    60% { margin-top: @trackPxToScroll * .35; }
-    100%{ margin-top: @trackPxToScroll; }
-};
-@-moz-keyframes digFeed {
+    50% { margin-top: @oneTracksPxToScroll * .6; }
+    55% { margin-top: @oneTracksPxToScroll * .65; }
+    60% { margin-top: @oneTracksPxToScroll * .65; }
+    100%{ margin-top: @oneTracksPxToScroll; }
+}
+@-moz-keyframes digFeedByOne {
     0%  { margin-top: 0; }
-    50% { margin-top: @trackPxToScroll * .3; }
-    55% { margin-top: @trackPxToScroll * .35; }
-    60% { margin-top: @trackPxToScroll * .35; }
-    100%{ margin-top: @trackPxToScroll; }
-};
-@-o-keyframes digFeed {
+    50% { margin-top: @oneTracksPxToScroll * .6; }
+    55% { margin-top: @oneTracksPxToScroll * .65; }
+    60% { margin-top: @oneTracksPxToScroll * .65; }
+    100%{ margin-top: @oneTracksPxToScroll; }
+}
+@-o-keyframes digFeedByOne {
     0%  { margin-top: 0; }
-    50% { margin-top: @trackPxToScroll * .3; }
-    55% { margin-top: @trackPxToScroll * .35; }
-    60% { margin-top: @trackPxToScroll * .35; }
-    100%{ margin-top: @trackPxToScroll; }
-};
-@keyframes digFeed {
+    50% { margin-top: @oneTracksPxToScroll * .6; }
+    55% { margin-top: @oneTracksPxToScroll * .65; }
+    60% { margin-top: @oneTracksPxToScroll * .65; }
+    100%{ margin-top: @oneTracksPxToScroll; }
+}
+@keyframes digFeedByOne {
     0%  { margin-top: 0; }
-    50% { margin-top: @trackPxToScroll * .3; }
-    55% { margin-top: @trackPxToScroll * .35; }
-    60% { margin-top: @trackPxToScroll * .35; }
-    100%{ margin-top: @trackPxToScroll; }
-};
+    50% { margin-top: @oneTracksPxToScroll * .6; }
+    55% { margin-top: @oneTracksPxToScroll * .65; }
+    60% { margin-top: @oneTracksPxToScroll * .65; }
+    100%{ margin-top: @oneTracksPxToScroll; }
+}
 
 @-webkit-keyframes popUpPlayer {
     0%  { -webkit-transform: translateY( 100% ); }
     60% { -webkit-transform: translateY( -15% ); }
     100%{ -webkit-transform: translateY( 0% ); }
-};
+}
 @-moz-keyframes popUpPlayer {
     0%  { -moz-transform: translateY( 100% ); }
     60% { -moz-transform: translateY( -15% ); }
     100%{ -moz-transform: translateY( 0% ); }
-};
+}
 @-o-keyframes popUpPlayer {
     0%  { -o-transform: translateY( 100% ); }
     60% { -o-transform: translateY( -15% ); }
     100%{ -o-transform: translateY( 0% ); }
-};
+}
 @keyframes popUpPlayer {
     0%  { transform: translateY( 100% ); }
     60% { transform: translateY( -15% ); }
     100%{ transform: translateY( 0% ); }
-};
+}
 
 @-webkit-keyframes popDownPlayer {
     0%  { -webkit-transform: translateY( 0% ); }
     100%{ -webkit-transform: translateY( 100% ); }
-};
+}
 @-moz-keyframes popDownPlayer {
     0%  { -moz-transform: translateY( 0% ); }
     100%{ -moz-transform: translateY( 100% ); }
-};
+}
 @-o-keyframes popDownPlayer {
     0%  { -o-transform: translateY( 0% ); }
     100%{ -o-transform: translateY( 100% ); }
-};
+}
 @keyframes popDownPlayer {
     0%  { transform: translateY( 0% ); }
     100%{ transform: translateY( 100% ); }
-};
+}
 
 @-webkit-keyframes playProgress {
     0%  { -webkit-transform: scaleX( 0 ); }
     100%{ -webkit-transform: scaleX( 1 ); }
-};
+}
 @-moz-keyframes playProgress {
     0%  { -moz-transform: scaleX( 0 ); }
     100%{ -moz-transform: scaleX( 1 ); }
-};
+}
 @-o-keyframes playProgress {
     0%  { -o-transform: scaleX( 0 ); }
     100%{ -o-transform: scaleX( 1 ); }
-};
+}
 @keyframes playProgress {
     0%  { transform: scaleX( 0 ); }
     100%{ transform: scaleX( 1 ); }
-};
+}
 
+@-webkit-keyframes swipeRemove {
+    0%  { -webkit-transform: translateX( 100% ); }
+    100%{ -webkit-transform: translateX( 0% ); }
+}
+@-moz-keyframes swipeRemove {
+    0%  { -moz-transform: translateX( 100% ); }
+    100%{ -moz-transform: translateX( 0% ); }
+}
+@-o-keyframes swipeRemove {
+    0%  { -o-transform: translateX( 100% ); }
+    100%{ -o-transform: translateX( 0% ); }
+}
+@keyframes swipeRemove {
+    0%  { transform: translateX( 100% ); }
+    100%{ transform: translateX( 0% ); }
+}
+
+
+#intro {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin: ( -1136px * @scale / 2 ) ( -640px * @scale / 2 );
+    width:  (  640px * @scale );
+    height: ( 1136px * @scale );
+    .disable-user-select;
+
+    &.with-statusbar {
+        .carousel {
+            >ul { padding: ( 110px * @scale ) 0 0; }
+            >div { top: 56%; }
+            >nav { bottom: 5%; }
+        }
+        #ios-statusbar {
+            display: block;
+        }
+    }
+}
 
 .view.home {
 
