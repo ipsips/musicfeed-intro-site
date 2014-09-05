@@ -34,9 +34,21 @@ angular.module('appControllers').controller('PhoneController', ['$scope', '$q', 
 
 
     $scope.panes = [{
-        text:  'Discover new music as soon as\n\
+        text:  'Keep track of your friends and\n\
+                favorite artists posting music\n\
+                around the web'
+        
+        /*text:  'musicfeed let\'s you know when\n\
                 your friends and favorite artists\n\
-                post it on the web'
+                post music on the web'*/
+
+        /*text:  'New music appears in your feed\n\
+                when your friends and favorite artists\n\
+                post it on the web'*/
+
+        /*text:  'Discover new music as soon as\n\
+                your friends and favorite artists\n\
+                post it on the web'*/
     },{
         text:  'Listen to tracks and watch videos\n\
                 directly in your feed'

@@ -427,19 +427,24 @@ a {
         
         &.full, &.full-remove-active {
             height: @fullPlayerHeight;
+            #track-video, #full-player-playing-info, #full-player-control { visibility: visible; }
             #track-video { height: @fullPlayerVideoHeight; }
             #mini-player-control { .lh-transform( translateY( -100% ) ); opacity: 0; }
-            #full-player-playing-info, #full-player-control { visibility: visible; }
+            #full-player-playing-info, #full-player-control { .lh-transform( translateY( 0px ) ); opacity: 1; }
         }
         &.full-add {
             .lh-animation( maximizePlayer .5s cubic-bezier( 0, .4, .4, 1 ) both );
             #track-video { .lh-animation( maximizeVideo .5s cubic-bezier( 0, .4, .4, 1 ) both ); }
             #mini-player-control { .lh-animation( hideMiniPlayerControl .5s cubic-bezier( 0, .4, .4, 1 ) both ); }
+            #full-player-playing-info { .lh-animation( showFullPlayerControl .4s cubic-bezier( 0, .4, .4, 1 ) .1s both ); }
+            #full-player-control { .lh-animation( showFullPlayerControl .3s cubic-bezier( 0, .4, .4, 1 ) .2s both ); }
         }
         &.full-remove {
             .lh-animation( minimizePlayer .5s cubic-bezier( 0, .4, .4, 1 ) both );
             #track-video { .lh-animation( minimizeVideo .5s cubic-bezier( 0, .4, .4, 1 ) both ); }
             #mini-player-control { .lh-animation( showMiniPlayerControl .5s cubic-bezier( 0, .4, .4, 1 ) both ); }
+            #full-player-playing-info { .lh-animation( hideFullPlayerControl .4s cubic-bezier( 0, .4, .4, 1 ) both ); }
+            #full-player-control { .lh-animation( hideFullPlayerControl .3s cubic-bezier( 0, .4, .4, 1 ) both ); }
         }
 
         &.visible-remove.full-remove { .lh-animation( popDownFullPlayer .25s cubic-bezier( .6, 0, 1, .4 ) both ); }
@@ -448,9 +453,35 @@ a {
             position: relative;
             z-index: 1;
             height: @fullPlayerVideoHeight;
-            background-color: @gray;
+            background-color: @gray-darkest;
             overflow: hidden;
+            visibility: hidden;
             height: 0;
+
+            >div {
+                width: 100%;
+                height: @fullPlayerVideoHeight;
+                position: relative;
+            }
+
+            //  “The min-height and min-width will
+            //  allow the video to maintain it's
+            //  aspect ratio ... any excess video
+            //  bleeds off the side of the page.”
+            //
+            //  @see stackoverflow.com/a/15515336
+            //
+            video {
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                min-width: 100%;
+                min-height: 100%;
+                width: auto;
+                height: auto;
+                overflow: hidden;
+                background-color: @gray-darkest;
+            }
         }
 
         #player-progress-bar {
@@ -508,7 +539,7 @@ a {
         #full-player-playing-info {
             width: 70%;
             height: 44px * @introScale;
-            margin: ( 0px * @introScale ) auto 0;
+            margin: ( -4px * @introScale ) auto 0;
             visibility: hidden;
 
             &:before, &:after {
@@ -526,7 +557,7 @@ a {
         }
 
         #full-player-control {
-            margin: ( 0px * @introScale ) auto 0;
+            margin: ( 12px * @introScale ) auto 0;
             width: 70%;
             height: 120px * @introScale;
             visibility: hidden;
