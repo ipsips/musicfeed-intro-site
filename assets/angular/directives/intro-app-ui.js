@@ -11,7 +11,7 @@
 
 
 
-angular.module('appDirectives').directive('introAppUi', function( $q, $timeout, $animate ) {
+angular.module('appDirectives').directive('introAppUi', function( $q, $timeout, $animate, $window ) {
 
     function Intro( $scope, $element, attributes ) {
 
@@ -162,6 +162,10 @@ angular.module('appDirectives').directive('introAppUi', function( $q, $timeout, 
             
             }
 
+        });
+
+        $window.addEventListener('load', function() {
+            angular.element('#track-video video').get(0).play();
         });
 
 

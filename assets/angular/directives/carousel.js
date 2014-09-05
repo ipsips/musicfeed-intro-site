@@ -66,7 +66,7 @@ angular.module('appDirectives').directive('carousel', function() {
 
             $scope.$apply(function(){
                 
-                $scope.stripOffset = percent/* * numPanes*/;
+                $scope.stripOffset = percent;
 
                 setBullet( percent, animate );
 
