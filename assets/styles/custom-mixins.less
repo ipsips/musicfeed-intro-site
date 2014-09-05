@@ -119,6 +119,22 @@
 //  Custom vars
 //
 
+//  app intro specific vars
+//
+@introScale: .5;
+@tapScale: 2.5;
+@playTapScale: 2;
+@introAppDisplayWidth: 300px * @introScale;
+@introAppDisplayHeight: 526px * @introScale;
+@feedHeight: @introAppDisplayHeight - ( ( 42px + 6px ) * @introScale ); // 42 = menu-bar height, 6 = menu-bar margin
+@miniPlayerHeight: 72px * @introScale;
+@fullPlayerHeight: @feedHeight + ( 12px * @introScale );
+@trackImageryHeight: 169px * @introScale;
+@fullPlayerVideoHeight: @trackImageryHeight * 1.25;
+@oneTracksPxToScroll: -( 169px + 66px + 12px ) * @introScale;
+@twoTracksPxToScroll: -( 169px + 66px + 12px ) * @introScale * 2;
+
+
 @summerYellow:      hsl(45, 85%, 60%);
 @portlandOrange:    rgb(239, 89, 56);
 @lustRed:           rgb(193, 21, 41);

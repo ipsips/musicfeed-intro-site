@@ -40,56 +40,23 @@ a {
 //``````````````````````````````
 //  Intro
 //
-
-@scale: .5;
-@tapScale: 2.5;
-@playTapScale: 2;
-@feedHeight: 526px - 42px - 6px;
-@imageryHeight: 169px;
-@oneTracksPxToScroll: -( 169px + 66px + 12px ) * @scale;
-@twoTracksPxToScroll: -( 169px + 66px + 12px ) * @scale * 2;
-
-.carousel {
+#intro {
     position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    font-size: 16px * 2 * @scale;
-
-    ul {
-        list-style: none;
-    }
-
-    //  the moveable strip
-    //
-    >ul {
-        padding: ( 60px * @scale ) 0 0;
-        margin: 0;
-        width: 100%;
-        height: 100%;
-        position: relative;
-        overflow: hidden;
-        // z-index: 1;
-        .lh-backface-visibility( hidden );
-
-        &.animate {
-            .lh-transition( transform .2s @ease );
-        }
-
-        li {
-            width: 100%;
-            height: 100%;
-            float: left;
-            overflow: hidden;
-            text-align: center;
-        }
-    }
+    left: 50%;
+    top: 50%;
+    margin: ( -1136px * @introScale / 2 ) ( -640px * @introScale / 2 );
+    width:  (  640px * @introScale );
+    height: ( 1136px * @introScale );
+    .disable-user-select;
     
-    //  the moveable strip stages
+    //  frames in the moveable strip
+    //  mostly text
     //
     .pane {
+        padding: ( 60px * @introScale ) 0 0;
+        font-size: 16px * 2 * @introScale;
         color: white;
+        text-align: center;
 
         p {
             white-space: pre-line;
@@ -101,25 +68,41 @@ a {
         }
     }
 
-    //  the fixed phone wireframe
+    //  bulleted nav indicator
     //
-    >div {
+    .carousel >nav {
+        bottom: 7%;
+        height: 12px * @introScale;
+        margin: ( -6px * @introScale ) 0;
+
+        li { width: 12px * @introScale; }
+        li +li { margin-left: 24px * @introScale; }
+    }
+
+    //  fixed phone wireframe
+    //
+    .intro-app-ui {
         top: 53%;
-        width: 340px * @scale;
-        height: 719px * @scale;
-        margin: ( -719px * @scale / 2 ) ( -340px * @scale / 2 );
-        border: ceil( 3px * @scale ) solid @gray-dark;
-        .lh-border-radius( 48px * @scale );
+        width: 340px * @introScale;
+        height: 719px * @introScale;
+        margin: ( -719px * @introScale / 2 ) ( -340px * @introScale / 2 );
+        border: ceil( 3px * @introScale ) solid @gray-dark;
+        .lh-border-radius( 48px * @introScale );
         // pointer-events: none;
         
         #display {
-            width: 300px * @scale;
-            height: 526px * @scale;
+            width: @introAppDisplayWidth;
+            height: @introAppDisplayHeight;
             top: 50%;
-            margin: ( -526px * @scale / 2 ) ( -300px * @scale / 2 );
-            border: ceil( 1px * @scale ) solid fade( @gray-dark, ( min( 100%, 100% * @scale ) ) );
+            margin: ( -@introAppDisplayHeight / 2 ) ( -@introAppDisplayWidth / 2 );
             overflow: hidden;
             .lh-transform( translate3d(0,0,0) );
+            // border: ceil( 1px * @introScale ) solid fade( @gray-dark, ( min( 100%, 100% * @introScale ) ) );
+            // .lh-box-shadow(
+            //     0 0 0 ceil( 2px * @introScale ) @gray-darker,
+            //     0 0 0 ceil( ( 2px + 1px ) * @introScale ) fade( @gray-dark, ( min( 100%, 100% * @introScale ) ) )
+            // );
+            .lh-box-shadow( 0 0 0 ceil( 1px * @introScale ) fade( @gray-dark, ( min( 100%, 100% * @introScale ) ) ) );
         }
         
         &, #lock-button, #mute-button, #up-button, #down-button, #home-button, #camera, #mic, #receiver, #display {
@@ -128,136 +111,87 @@ a {
         }
 
         #lock-button {
-            width: 54px * @scale;
-            height: 4px * @scale;
-            top: ceil( -3px * @scale * 2 );
-            left: 228px * @scale;
+            width: 54px * @introScale;
+            height: 4px * @introScale;
+            top: ceil( -3px * @introScale * 2 );
+            left: 228px * @introScale;
             background-color: @gray-dark;
         }
 
         #mute-button {
-            width: 4px * @scale;
-            height: 34px * @scale;
-            top: 96px * @scale;
-            left: ceil( -3px * @scale * 2 );
+            width: 4px * @introScale;
+            height: 34px * @introScale;
+            top: 96px * @introScale;
+            left: ceil( -3px * @introScale * 2 );
             background-color: @gray-dark;
         }
 
         #up-button {
-            width: 4px * @scale;
-            height: 26px * @scale;
-            top: 164px * @scale;
-            left: ceil( -3px * @scale * 2 );
+            width: 4px * @introScale;
+            height: 26px * @introScale;
+            top: 164px * @introScale;
+            left: ceil( -3px * @introScale * 2 );
             background-color: @gray-dark;
         }
 
         #down-button {
-            width: 4px * @scale;
-            height: 26px * @scale;
-            top: 224px * @scale;
-            left: ceil( -3px * @scale * 2 );
+            width: 4px * @introScale;
+            height: 26px * @introScale;
+            top: 224px * @introScale;
+            left: ceil( -3px * @introScale * 2 );
             background-color: @gray-dark;
         }
 
         #home-button {
-            width: 64px * @scale;
-            height: 64px * @scale;
-            bottom: 50px * @scale;
-            margin: -32px * @scale;
-            border: ceil( 3px * @scale ) solid @gray-dark;
+            width: 64px * @introScale;
+            height: 64px * @introScale;
+            bottom: 50px * @introScale;
+            margin: -32px * @introScale;
+            border: ceil( 3px * @introScale ) solid @gray-dark;
             .lh-border-radius( 100% );
         }
 
         #camera {
-            width: 12px * @scale;
-            height: 12px * @scale;
-            top: 36px * @scale;
-            margin: -6px * @scale;
+            width: 12px * @introScale;
+            height: 12px * @introScale;
+            top: 36px * @introScale;
+            margin: -6px * @introScale;
             background-color: @gray-dark;
             .lh-border-radius( 100% );
         }
         
         #mic {
-            width: 6px * @scale;
-            height: 6px * @scale;
-            top: 60px * @scale;
-            margin: -3px * @scale;
-            margin-left: -48px * @scale;
+            width: 6px * @introScale;
+            height: 6px * @introScale;
+            top: 60px * @introScale;
+            margin: -3px * @introScale;
+            margin-left: -48px * @introScale;
             background-color: @gray-dark;
-            .lh-border-radius( ceil( 3px * @scale ) );
+            .lh-border-radius( ceil( 3px * @introScale ) );
         }
         
         #receiver {
-            width: 58px * @scale;
-            height: 6px * @scale;
-            top: 60px * @scale;
-            margin: ( -3px * @scale ) ( -29px * @scale );
+            width: 58px * @introScale;
+            height: 6px * @introScale;
+            top: 60px * @introScale;
+            margin: ( -3px * @introScale ) ( -29px * @introScale );
             background-color: @gray-dark;
-            .lh-border-radius( ceil( 3px * @scale ) );
+            .lh-border-radius( ceil( 3px * @introScale ) );
         }
     }
 
-    //  the bullets
-    //
-    >nav {
-        position: absolute;
-        bottom: 7%;
-        width: 100%;
-        height: 12px * @scale;
-        margin: ( -6px * @scale ) 0;
-        text-align: center;
-        pointer-events: none;
-
-        ul {
-            padding: 0;
-            margin: 0;
-            height: 12px * @scale;
-        }
-
-        li {
-            display: inline-block;
-            vertical-align: top;
-            position: relative;
-            width: 12px * @scale;
-            height: 12px * @scale;
-            background-color: @gray-dark;
-            .lh-border-radius( 100% );
-
-            +li { margin-left: 24px * @scale; }
-
-            i {
-                position: absolute;
-                left: 0;
-                top: 0;
-                width: 100%;
-                height: 100%;
-                opacity: 0;
-                background-color: @gray-light;
-                .lh-border-radius( 100% );
-            }
-
-            &.active i {
-                opacity: 1;
-            }
-        }
-        
-        &.animate li i {
-            .lh-transition( opacity .2s @ease );
-        }
-    }
-
-    //  the app UI
+    //  animated graphic app UI
     //
     #menubar {
         &, #app-name {
-            height: 42px * @scale;
-            margin-bottom: 6px * @scale;
+            height: 42px * @introScale;
+            margin-bottom: 6px * @introScale;
         }
 
         #menu-toggle {
-            width: 20px * @scale;
-            height: 14px * @scale;
-            margin: 14px * @scale;
+            width: 20px * @introScale;
+            height: 14px * @introScale;
+            margin: 14px * @introScale;
             float: left;
 
             svg {
@@ -268,9 +202,9 @@ a {
         #app-name {
             float: left;
             width: 100%;
-            margin-left: -48px * @scale;
-            line-height: 40px * @scale;
-            font-size: 22px * @scale;
+            margin-left: -48px * @introScale;
+            line-height: 40px * @introScale;
+            font-size: 22px * @introScale;
             font-weight: 500;
             color: @gray-dark;
             text-align: center;
@@ -278,14 +212,15 @@ a {
     }
 
     #feed {
-        height: @feedHeight * @scale;
+        height: @feedHeight;
         padding: 0;
         margin: 0;
         overflow: hidden;
 
         li {
+            display: block;
             overflow: hidden;
-            height: ( 169px + 66px + 12px ) * @scale;
+            height: ( 169px + 66px + 12px ) * @introScale;
 
             &.new {
                 .lh-animation( incomingTrack .5s cubic-bezier( 0, .4, .6, 1 ) both );
@@ -318,7 +253,7 @@ a {
 
             .track-imagery {
                 position: relative;
-                height: @imageryHeight * @scale;
+                height: @trackImageryHeight;
                 background-color: @gray-dark;
                 .lh-transform( translate3d(0,0,0) );
                 
@@ -331,9 +266,9 @@ a {
                     position: absolute;
                     left: 53%;
                     top: 50%;
-                    width: 50px * @playTapScale * @scale;
-                    height: 50px * @playTapScale * @scale;
-                    margin: -25px * @playTapScale * @scale;
+                    width: 50px * @playTapScale * @introScale;
+                    height: 50px * @playTapScale * @introScale;
+                    margin: -25px * @playTapScale * @introScale;
                     .lh-transform( scale( 1 / @playTapScale ) );
                     background: url('/images/intro-play-btn.svg') no-repeat center top;
                     background-size: 100% auto;
@@ -353,27 +288,27 @@ a {
                     background-color: @brand-primary;
                     visibility: hidden;
 
-                    &.swiped { visibility: visible; }
+                    &.swiped, &.swiped-remove-active { visibility: visible; }
                     &.swiped-add { .lh-animation( swipeRemove .2s cubic-bezier( .4, .4, .5, .9 ) both ); }
-
+                    &.swiped-remove { .lh-animation( retreatRemove .2s cubic-bezier( .4, .4, .5, .9 ) both ); }
 
                     i, b {
                         display: block;
                         position: absolute;
                         left: 50%;
                         top: 50%;
-                        width: 50px * @scale;
-                        height: 50px * @scale;
-                        margin: -25px * @scale;
+                        width: 50px * @introScale;
+                        height: 50px * @introScale;
+                        margin: -25px * @introScale;
                         background: url('/images/intro-trash.svg') no-repeat center;
                         background-size: 100% auto;
                     }
 
                     b {
                         z-index: 1;
-                        width: 50px * @scale * @tapScale;
-                        height: 50px * @scale * @tapScale;
-                        margin: -25px * @scale * @tapScale;
+                        width: 50px * @introScale * @tapScale;
+                        height: 50px * @introScale * @tapScale;
+                        margin: -25px * @introScale * @tapScale;
                         visibility: hidden;
                     }
 
@@ -388,15 +323,15 @@ a {
             // &:nth-child( 3 ) .track-info .avatar { background-color: yellow; }
 
             .track-info {
-                height: 66px * @scale;
+                height: 66px * @introScale;
                 position: relative;
                 .lh-transform( translate3d(0,0,0) );
 
                 .avatar {
                     float: left;
-                    width: 46px * @scale;
-                    height: 46px * @scale;
-                    margin: ( 10px * @scale ) ( 16px * @scale );
+                    width: 46px * @introScale;
+                    height: 46px * @introScale;
+                    margin: ( 10px * @introScale ) ( 16px * @introScale );
                     // background: url('/images/intro-avatar.svg') no-repeat center top;
                     // background-size: 100% auto;
 
@@ -411,17 +346,17 @@ a {
 
                 .lines {
                     float: left;
-                    width: 100px * @scale;
-                    height: 26px * @scale;
-                    margin: ( 20px * @scale ) ( 4px * @scale );
+                    width: 100px * @introScale;
+                    height: 26px * @introScale;
+                    margin: ( 20px * @introScale ) ( 4px * @introScale );
 
                     i {
                         display: block;
-                        height: 10px * @scale;
+                        height: 10px * @introScale;
                         background-color: @gray-dark;
 
                         &:nth-child(2) {
-                            margin-top: 6px * @scale;
+                            margin-top: 6px * @introScale;
                             width: 60%;
                         }
                     }
@@ -429,10 +364,10 @@ a {
 
                 .heart {
                     position: absolute;
-                    right: 20px * @scale;
-                    top: 20px * @scale;
-                    width: 26px * @scale;
-                    height: 26px * @scale;
+                    right: 20px * @introScale;
+                    top: 20px * @introScale;
+                    width: 26px * @introScale;
+                    height: 26px * @introScale;
                     // background: url('/images/intro-heart-outline.svg') no-repeat center;
                     // background-size: 100% auto;
 
@@ -480,8 +415,8 @@ a {
         position: absolute;
         z-index: 1;
         left: 0;
-        bottom: -12px * @scale;
-        height: 72px * @scale;
+        bottom: -12px * @introScale;
+        height: @miniPlayerHeight;
         width: 100%;
         background-color: @gray-darkest;
         visibility: hidden;
@@ -490,10 +425,11 @@ a {
         &.visible-add { .lh-animation( popUpPlayer .3s linear both ); }
         &.visible-remove { .lh-animation( popDownPlayer .15s cubic-bezier( .6, 0, 1, .4 ) both ); }
         
-        &.full {
-            height: ( @feedHeight + 12px ) * @scale;
-            #track-video { height: @imageryHeight * @scale; }
-            #mini-player-control { margin-top: -60px * @scale; opacity: 0; }
+        &.full, &.full-remove-active {
+            height: @fullPlayerHeight;
+            #track-video { height: @fullPlayerVideoHeight; }
+            #mini-player-control { .lh-transform( translateY( -100% ) ); opacity: 0; }
+            #full-player-playing-info, #full-player-control { visibility: visible; }
         }
         &.full-add {
             .lh-animation( maximizePlayer .5s cubic-bezier( 0, .4, .4, 1 ) both );
@@ -506,12 +442,12 @@ a {
             #mini-player-control { .lh-animation( showMiniPlayerControl .5s cubic-bezier( 0, .4, .4, 1 ) both ); }
         }
 
-        &.visible-remove.full-remove { .lh-animation( popDownFullPlayer .15s cubic-bezier( .6, 0, 1, .4 ) both ); }
+        &.visible-remove.full-remove { .lh-animation( popDownFullPlayer .25s cubic-bezier( .6, 0, 1, .4 ) both ); }
 
         #track-video {
             position: relative;
             z-index: 1;
-            height: @imageryHeight;
+            height: @fullPlayerVideoHeight;
             background-color: @gray;
             overflow: hidden;
             height: 0;
@@ -520,8 +456,8 @@ a {
         #player-progress-bar {
             position: relative;
             z-index: 1;
-            height: 6px * @scale;
-            margin: ( -3px * @scale ) 0;
+            height: 6px * @introScale;
+            margin: ( -3px * @introScale ) 0;
             background-color: @gray-darker;
             .lh-transform( translate3d(0,0,0) );
 
@@ -537,597 +473,94 @@ a {
         }
 
         #mini-player-control {
-            height: 60px * @scale;
+            height: 60px * @introScale;
             position: relative;
         }
 
         #mini-player-btn {
             float: left;
-            width: 40px * @scale;
-            height: 40px * @scale;
-            margin: ( 10px * @scale ) ( 12px * @scale );
+            width: 40px * @introScale;
+            height: 40px * @introScale;
+            margin: ( 10px * @introScale ) ( 12px * @introScale );
             background: url('/images/intro-pause-btn.svg') no-repeat center;
             background-size: 100% auto;
         }
 
         #mini-playing-info {
             float: left;
-            width: 100px * @scale;
-            height: 26px * @scale;
-            margin: ( 16px * @scale ) ( 8px * @scale );
+            width: 100px * @introScale;
+            height: 26px * @introScale;
+            margin: ( 16px * @introScale ) ( 8px * @introScale );
 
             &:before, &:after {
                 content: '';
                 display: block;
-                height: 10px * @scale;
+                height: 10px * @introScale;
                 background-color: @gray-darker;
             }
 
             &:after {
-                margin-top: 6px * @scale;
+                margin-top: 6px * @introScale;
                 width: 60%;
             }
         }
 
         #full-player-playing-info {
-            
+            width: 70%;
+            height: 44px * @introScale;
+            margin: ( 0px * @introScale ) auto 0;
+            visibility: hidden;
+
+            &:before, &:after {
+                content: '';
+                display: block;
+                height: 16px * @introScale;
+                background-color: @gray-darker;
+                width: 90%;
+            }
+
+            &:after {
+                margin-top: 12px * @introScale;
+                width: 55%;
+            }
         }
 
         #full-player-control {
+            margin: ( 0px * @introScale ) auto 0;
+            width: 70%;
+            height: 120px * @introScale;
+            visibility: hidden;
 
-        }
-        
-    }
-}
+            #full-player-prev,
+            #full-player-next,
+            #full-player-btn {
+                float: left;
+                width: 15%;
+                height: 100%;
+                background: url('/images/intro-skip-backward.svg') no-repeat center;
+                background-size: 100% auto;
+                // background-color: fade( white, 5% );
+            }
+            #full-player-next {
+                background-image: url('/images/intro-skip-forward.svg');
+            }
 
-@-webkit-keyframes incomingTrack {
-    0%  { opacity: 0; height: 0; }
-    50% { opacity: 0;                -webkit-transform: scale( .8 ); }
-    70% {             height: ( 169px + 66px + 12px ) * @scale; }
-    100%{ opacity: 1;                -webkit-transform: scale( 1 ); }
-}
-@-moz-keyframes incomingTrack {
-    0%  { opacity: 0; height: 0; }
-    50% { opacity: 0;                -moz-transform: scale( .8 ); }
-    70% {             height: ( 169px + 66px + 12px ) * @scale; }
-    100%{ opacity: 1;                -moz-transform: scale( 1 ); }
-}
-@-o-keyframes incomingTrack {
-    0%  { opacity: 0; height: 0; }
-    50% { opacity: 0;                -o-transform: scale( .8 ); }
-    70% {             height: ( 169px + 66px + 12px ) * @scale; }
-    100%{ opacity: 1;                -o-transform: scale( 1 ); }
-}
-@keyframes incomingTrack {
-    0%  { opacity: 0; height: 0; }
-    50% { opacity: 0;                transform: scale( .8 ); }
-    70% {             height: ( 169px + 66px + 12px ) * @scale; }
-    100%{ opacity: 1;                transform: scale( 1 ); }
-}
-
-@-webkit-keyframes incomingTrackRedBgColor {
-    0%  { background-color: @brand-primary; }
-    70% { background-color: @brand-primary; }
-    100%{ background-color: @gray-dark; }
-}
-@-moz-keyframes incomingTrackRedBgColor {
-    0%  { background-color: @brand-primary; }
-    70% { background-color: @brand-primary; }
-    100%{ background-color: @gray-dark; }
-}
-@-o-keyframes incomingTrackRedBgColor {
-    0%  { background-color: @brand-primary; }
-    70% { background-color: @brand-primary; }
-    100%{ background-color: @gray-dark; }
-}
-@keyframes incomingTrackRedBgColor {
-    0%  { background-color: @brand-primary; }
-    70% { background-color: @brand-primary; }
-    100%{ background-color: @gray-dark; }
-}
-
-@-webkit-keyframes incomingTrackRedFillColor {
-    0%  { fill: @brand-primary; }
-    70% { fill: @brand-primary; }
-    100%{ fill: @gray-dark; }
-}
-@-moz-keyframes incomingTrackRedFillColor {
-    0%  { fill: @brand-primary; }
-    70% { fill: @brand-primary; }
-    100%{ fill: @gray-dark; }
-}
-@-o-keyframes incomingTrackRedFillColor {
-    0%  { fill: @brand-primary; }
-    70% { fill: @brand-primary; }
-    100%{ fill: @gray-dark; }
-}
-@keyframes incomingTrackRedFillColor {
-    0%  { fill: @brand-primary; }
-    70% { fill: @brand-primary; }
-    100%{ fill: @gray-dark; }
-}
-
-@newTrackGreen: #47cc5e;
-
-@-webkit-keyframes incomingTrackGreenBgColor {
-    0%  { background-color: @newTrackGreen; }
-    70% { background-color: @newTrackGreen; }
-    100%{ background-color: @gray-dark; }
-}
-@-moz-keyframes incomingTrackGreenBgColor {
-    0%  { background-color: @newTrackGreen; }
-    70% { background-color: @newTrackGreen; }
-    100%{ background-color: @gray-dark; }
-}
-@-o-keyframes incomingTrackGreenBgColor {
-    0%  { background-color: @newTrackGreen; }
-    70% { background-color: @newTrackGreen; }
-    100%{ background-color: @gray-dark; }
-}
-@keyframes incomingTrackGreenBgColor {
-    0%  { background-color: @newTrackGreen; }
-    70% { background-color: @newTrackGreen; }
-    100%{ background-color: @gray-dark; }
-}
-
-@-webkit-keyframes incomingTrackGreenFillColor {
-    0%  { fill: @newTrackGreen; }
-    70% { fill: @newTrackGreen; }
-    100%{ fill: @gray-dark; }
-}
-@-moz-keyframes incomingTrackGreenFillColor {
-    0%  { fill: @newTrackGreen; }
-    70% { fill: @newTrackGreen; }
-    100%{ fill: @gray-dark; }
-}
-@-o-keyframes incomingTrackGreenFillColor {
-    0%  { fill: @newTrackGreen; }
-    70% { fill: @newTrackGreen; }
-    100%{ fill: @gray-dark; }
-}
-@keyframes incomingTrackGreenFillColor {
-    0%  { fill: @newTrackGreen; }
-    70% { fill: @newTrackGreen; }
-    100%{ fill: @gray-dark; }
-}
-
-@newTrackYellow: #ffcc02;
-
-@-webkit-keyframes incomingTrackYellowBgColor {
-    0%  { background-color: @newTrackYellow; }
-    70% { background-color: @newTrackYellow; }
-    100%{ background-color: @gray-dark; }
-}
-@-moz-keyframes incomingTrackYellowBgColor {
-    0%  { background-color: @newTrackYellow; }
-    70% { background-color: @newTrackYellow; }
-    100%{ background-color: @gray-dark; }
-}
-@-o-keyframes incomingTrackYellowBgColor {
-    0%  { background-color: @newTrackYellow; }
-    70% { background-color: @newTrackYellow; }
-    100%{ background-color: @gray-dark; }
-}
-@keyframes incomingTrackYellowBgColor {
-    0%  { background-color: @newTrackYellow; }
-    70% { background-color: @newTrackYellow; }
-    100%{ background-color: @gray-dark; }
-}
-
-@-webkit-keyframes incomingTrackYellowFillColor {
-    0%  { fill: @newTrackYellow; }
-    70% { fill: @newTrackYellow; }
-    100%{ fill: @gray-dark; }
-}
-@-moz-keyframes incomingTrackYellowFillColor {
-    0%  { fill: @newTrackYellow; }
-    70% { fill: @newTrackYellow; }
-    100%{ fill: @gray-dark; }
-}
-@-o-keyframes incomingTrackYellowFillColor {
-    0%  { fill: @newTrackYellow; }
-    70% { fill: @newTrackYellow; }
-    100%{ fill: @gray-dark; }
-}
-@keyframes incomingTrackYellowFillColor {
-    0%  { fill: @newTrackYellow; }
-    70% { fill: @newTrackYellow; }
-    100%{ fill: @gray-dark; }
-}
-
-@newTrackBlue: #5ac8fa;
-
-@-webkit-keyframes incomingTrackBlueBgColor {
-    0%  { background-color: @newTrackBlue; }
-    70% { background-color: @newTrackBlue; }
-    100%{ background-color: @gray-dark; }
-}
-@-moz-keyframes incomingTrackBlueBgColor {
-    0%  { background-color: @newTrackBlue; }
-    70% { background-color: @newTrackBlue; }
-    100%{ background-color: @gray-dark; }
-}
-@-o-keyframes incomingTrackBlueBgColor {
-    0%  { background-color: @newTrackBlue; }
-    70% { background-color: @newTrackBlue; }
-    100%{ background-color: @gray-dark; }
-}
-@keyframes incomingTrackBlueBgColor {
-    0%  { background-color: @newTrackBlue; }
-    70% { background-color: @newTrackBlue; }
-    100%{ background-color: @gray-dark; }
-}
-
-@-webkit-keyframes incomingTrackBlueFillColor {
-    0%  { fill: @newTrackBlue; }
-    70% { fill: @newTrackBlue; }
-    100%{ fill: @gray-dark; }
-}
-@-moz-keyframes incomingTrackBlueFillColor {
-    0%  { fill: @newTrackBlue; }
-    70% { fill: @newTrackBlue; }
-    100%{ fill: @gray-dark; }
-}
-@-o-keyframes incomingTrackBlueFillColor {
-    0%  { fill: @newTrackBlue; }
-    70% { fill: @newTrackBlue; }
-    100%{ fill: @gray-dark; }
-}
-@keyframes incomingTrackBlueFillColor {
-    0%  { fill: @newTrackBlue; }
-    70% { fill: @newTrackBlue; }
-    100%{ fill: @gray-dark; }
-}
-
-@-webkit-keyframes triggerTapPlay {
-    0%  { opacity: 1; -webkit-transform: scale( 1 / @playTapScale ) translateX( 0 ); }
-    100%{ opacity: 0; -webkit-transform: scale( 1 ) translateX( 6% ); }
-}
-@-moz-keyframes triggerTapPlay {
-    0%  { opacity: 1; -moz-transform: scale( 1 / @playTapScale ) translateX( 0 ); }
-    100%{ opacity: 0; -moz-transform: scale( 1 ) translateX( 6% ); }
-}
-@-o-keyframes triggerTapPlay {
-    0%  { opacity: 1; -o-transform: scale( 1 / @playTapScale ) translateX( 0 ); }
-    100%{ opacity: 0; -o-transform: scale( 1 ) translateX( 6% ); }
-}
-@keyframes triggerTapPlay {
-    0%  { opacity: 1; transform: scale( 1 / @playTapScale ) translateX( 0 ); }
-    100%{ opacity: 0; transform: scale( 1 ) translateX( 6% ); }
-}
-
-@-webkit-keyframes triggerTapHeart {
-    0%  { opacity: 1; -webkit-transform: scale( 1 / @tapScale ) translateY( 0 ); }
-    100%{ opacity: 0; -webkit-transform: scale( 1 ) translateY( 6% ); }
-}
-@-moz-keyframes triggerTapHeart {
-    0%  { opacity: 1; -moz-transform: scale( 1 / @tapScale ) translateY( 0 ); }
-    100%{ opacity: 0; -moz-transform: scale( 1 ) translateY( 6% ); }
-}
-@-o-keyframes triggerTapHeart {
-    0%  { opacity: 1; -o-transform: scale( 1 / @tapScale ) translateY( 0 ); }
-    100%{ opacity: 0; -o-transform: scale( 1 ) translateY( 6% ); }
-}
-@keyframes triggerTapHeart {
-    0%  { opacity: 1; transform: scale( 1 / @tapScale ) translateY( 0 ); }
-    100%{ opacity: 0; transform: scale( 1 ) translateY( 6% ); }
-}
-
-@-webkit-keyframes triggerTap {
-    0%  { opacity: 1; -webkit-transform: scale( 1 / @tapScale ); }
-    100%{ opacity: 0; -webkit-transform: scale( 1 ); }
-}
-@-moz-keyframes triggerTap {
-    0%  { opacity: 1; -moz-transform: scale( 1 / @tapScale ); }
-    100%{ opacity: 0; -moz-transform: scale( 1 ); }
-}
-@-o-keyframes triggerTap {
-    0%  { opacity: 1; -o-transform: scale( 1 / @tapScale ); }
-    100%{ opacity: 0; -o-transform: scale( 1 ); }
-}
-@keyframes triggerTap {
-    0%  { opacity: 1; transform: scale( 1 / @tapScale ); }
-    100%{ opacity: 0; transform: scale( 1 ); }
-}
-
-@-webkit-keyframes outgoingTrack {
-    0%  { opacity: 1;                -webkit-transform: scale( 1 ); }
-    30% {             height: ( 169px + 66px + 12px ) * @scale; }
-    50% { opacity: 0;                -webkit-transform: scale( .8 ); }
-    100%{ opacity: 0; height: 0; }
-}
-@-moz-keyframes outgoingTrack {
-    0%  { opacity: 0; height: 0; }
-    50% { opacity: 0;                -moz-transform: scale( .8 ); }
-    70% {             height: ( 169px + 66px + 12px ) * @scale; }
-    100%{ opacity: 1;                -moz-transform: scale( 1 ); }
-}
-@-o-keyframes outgoingTrack {
-    0%  { opacity: 0; height: 0; }
-    50% { opacity: 0;                -o-transform: scale( .8 ); }
-    70% {             height: ( 169px + 66px + 12px ) * @scale; }
-    100%{ opacity: 1;                -o-transform: scale( 1 ); }
-}
-@keyframes outgoingTrack {
-    0%  { opacity: 0; height: 0; }
-    50% { opacity: 0;                transform: scale( .8 ); }
-    70% {             height: ( 169px + 66px + 12px ) * @scale; }
-    100%{ opacity: 1;                transform: scale( 1 ); }
-}
-
-@-webkit-keyframes digFeedByTwo {
-    0%  { margin-top: 0; }
-    50% { margin-top: @twoTracksPxToScroll * .3; }
-    55% { margin-top: @twoTracksPxToScroll * .35; }
-    60% { margin-top: @twoTracksPxToScroll * .35; }
-    100%{ margin-top: @twoTracksPxToScroll; }
-}
-@-moz-keyframes digFeedByTwo {
-    0%  { margin-top: 0; }
-    50% { margin-top: @twoTracksPxToScroll * .3; }
-    55% { margin-top: @twoTracksPxToScroll * .35; }
-    60% { margin-top: @twoTracksPxToScroll * .35; }
-    100%{ margin-top: @twoTracksPxToScroll; }
-}
-@-o-keyframes digFeedByTwo {
-    0%  { margin-top: 0; }
-    50% { margin-top: @twoTracksPxToScroll * .3; }
-    55% { margin-top: @twoTracksPxToScroll * .35; }
-    60% { margin-top: @twoTracksPxToScroll * .35; }
-    100%{ margin-top: @twoTracksPxToScroll; }
-}
-@keyframes digFeedByTwo {
-    0%  { margin-top: 0; }
-    50% { margin-top: @twoTracksPxToScroll * .3; }
-    55% { margin-top: @twoTracksPxToScroll * .35; }
-    60% { margin-top: @twoTracksPxToScroll * .35; }
-    100%{ margin-top: @twoTracksPxToScroll; }
-}
-
-@-webkit-keyframes digFeedByOne {
-    0%  { margin-top: 0; }
-    50% { margin-top: @oneTracksPxToScroll * .6; }
-    55% { margin-top: @oneTracksPxToScroll * .65; }
-    60% { margin-top: @oneTracksPxToScroll * .65; }
-    100%{ margin-top: @oneTracksPxToScroll; }
-}
-@-moz-keyframes digFeedByOne {
-    0%  { margin-top: 0; }
-    50% { margin-top: @oneTracksPxToScroll * .6; }
-    55% { margin-top: @oneTracksPxToScroll * .65; }
-    60% { margin-top: @oneTracksPxToScroll * .65; }
-    100%{ margin-top: @oneTracksPxToScroll; }
-}
-@-o-keyframes digFeedByOne {
-    0%  { margin-top: 0; }
-    50% { margin-top: @oneTracksPxToScroll * .6; }
-    55% { margin-top: @oneTracksPxToScroll * .65; }
-    60% { margin-top: @oneTracksPxToScroll * .65; }
-    100%{ margin-top: @oneTracksPxToScroll; }
-}
-@keyframes digFeedByOne {
-    0%  { margin-top: 0; }
-    50% { margin-top: @oneTracksPxToScroll * .6; }
-    55% { margin-top: @oneTracksPxToScroll * .65; }
-    60% { margin-top: @oneTracksPxToScroll * .65; }
-    100%{ margin-top: @oneTracksPxToScroll; }
-}
-
-@-webkit-keyframes popUpPlayer {
-    0%  { -webkit-transform: translateY( 100% ); }
-    60% { -webkit-transform: translateY( -15% ); }
-    100%{ -webkit-transform: translateY( 0% ); }
-}
-@-moz-keyframes popUpPlayer {
-    0%  { -moz-transform: translateY( 100% ); }
-    60% { -moz-transform: translateY( -15% ); }
-    100%{ -moz-transform: translateY( 0% ); }
-}
-@-o-keyframes popUpPlayer {
-    0%  { -o-transform: translateY( 100% ); }
-    60% { -o-transform: translateY( -15% ); }
-    100%{ -o-transform: translateY( 0% ); }
-}
-@keyframes popUpPlayer {
-    0%  { transform: translateY( 100% ); }
-    60% { transform: translateY( -15% ); }
-    100%{ transform: translateY( 0% ); }
-}
-
-@-webkit-keyframes popDownPlayer {
-    0%  { -webkit-transform: translateY( 0% ); }
-    100%{ -webkit-transform: translateY( 100% ); }
-}
-@-moz-keyframes popDownPlayer {
-    0%  { -moz-transform: translateY( 0% ); }
-    100%{ -moz-transform: translateY( 100% ); }
-}
-@-o-keyframes popDownPlayer {
-    0%  { -o-transform: translateY( 0% ); }
-    100%{ -o-transform: translateY( 100% ); }
-}
-@keyframes popDownPlayer {
-    0%  { transform: translateY( 0% ); }
-    100%{ transform: translateY( 100% ); }
-}
-
-@-webkit-keyframes popDownFullPlayer {
-    0%  { -webkit-transform: translateY( 0% ); height: ( @feedHeight + 12px ) * @scale; }
-    100%{ -webkit-transform: translateY( 100% ); height: 72px * @scale; }
-}
-@-moz-keyframes popDownFullPlayer {
-    0%  { -moz-transform: translateY( 0% ); height: ( @feedHeight + 12px ) * @scale; }
-    100%{ -moz-transform: translateY( 100% ); height: 72px * @scale; }
-}
-@-o-keyframes popDownFullPlayer {
-    0%  { -o-transform: translateY( 0% ); height: ( @feedHeight + 12px ) * @scale; }
-    100%{ -o-transform: translateY( 100% ); height: 72px * @scale; }
-}
-@keyframes popDownFullPlayer {
-    0%  { transform: translateY( 0% ); height: ( @feedHeight + 12px ) * @scale; }
-    100%{ transform: translateY( 100% ); height: 72px * @scale; }
-}
-
-@-webkit-keyframes maximizePlayer {
-    0%  { height: 72px * @scale; }
-    100%{ height: ( @feedHeight + 12px ) * @scale; }
-}
-@-moz-keyframes maximizePlayer {
-    0%  { height: 72px * @scale; }
-    100%{ height: ( @feedHeight + 12px ) * @scale; }
-}
-@-o-keyframes maximizePlayer {
-    0%  { height: 72px * @scale; }
-    100%{ height: ( @feedHeight + 12px ) * @scale; }
-}
-@keyframes maximizePlayer {
-    0%  { height: 72px * @scale; }
-    100%{ height: ( @feedHeight + 12px ) * @scale; }
-}
-
-@-webkit-keyframes maximizeVideo {
-    0%  { height: 0; }
-    100%{ height: @imageryHeight * @scale; }
-}
-@-moz-keyframes maximizeVideo {
-    0%  { height: 0; }
-    100%{ height: @imageryHeight * @scale; }
-}
-@-o-keyframes maximizeVideo {
-    0%  { height: 0; }
-    100%{ height: @imageryHeight * @scale; }
-}
-@keyframes maximizeVideo {
-    0%  { height: 0; }
-    100%{ height: @imageryHeight * @scale; }
-}
-
-@-webkit-keyframes minimizeVideo {
-    0%  { height: @imageryHeight * @scale; }
-    100%{ height: 0; }
-}
-@-moz-keyframes minimizeVideo {
-    0%  { height: @imageryHeight * @scale; }
-    100%{ height: 0; }
-}
-@-o-keyframes minimizeVideo {
-    0%  { height: @imageryHeight * @scale; }
-    100%{ height: 0; }
-}
-@keyframes minimizeVideo {
-    0%  { height: @imageryHeight * @scale; }
-    100%{ height: 0; }
-}
-
-@-webkit-keyframes showMiniPlayerControl {
-    0%  { margin-top: -60px * @scale; opacity: 0; }
-    100%{ margin-top: 0; opacity: 1; }
-}
-@-moz-keyframes showMiniPlayerControl {
-    0%  { margin-top: -60px * @scale; opacity: 0; }
-    100%{ margin-top: 0; opacity: 1; }
-}
-@-o-keyframes showMiniPlayerControl {
-    0%  { margin-top: -60px * @scale; opacity: 0; }
-    100%{ margin-top: 0; opacity: 1; }
-}
-@keyframes showMiniPlayerControl {
-    0%  { margin-top: -60px * @scale; opacity: 0; }
-    100%{ margin-top: 0; opacity: 1; }
-}
-
-@-webkit-keyframes hideMiniPlayerControl {
-    0%  { margin-top: 0; opacity: 1; }
-    100%{ margin-top: -60px * @scale; opacity: 0; }
-}
-@-moz-keyframes hideMiniPlayerControl {
-    0%  { margin-top: 0; opacity: 1; }
-    100%{ margin-top: -60px * @scale; opacity: 0; }
-}
-@-o-keyframes hideMiniPlayerControl {
-    0%  { margin-top: 0; opacity: 1; }
-    100%{ margin-top: -60px * @scale; opacity: 0; }
-}
-@keyframes hideMiniPlayerControl {
-    0%  { margin-top: 0; opacity: 1; }
-    100%{ margin-top: -60px * @scale; opacity: 0; }
-}
-
-@-webkit-keyframes minimizePlayer {
-    0%  { height: ( @feedHeight + 12px ) * @scale; }
-    100%{ height: 72px * @scale; }
-}
-@-moz-keyframes minimizePlayer {
-    0%  { height: ( @feedHeight + 12px ) * @scale; }
-    100%{ height: 72px * @scale; }
-}
-@-o-keyframes minimizePlayer {
-    0%  { height: ( @feedHeight + 12px ) * @scale; }
-    100%{ height: 72px * @scale; }
-}
-@keyframes minimizePlayer {
-    0%  { height: ( @feedHeight + 12px ) * @scale; }
-    100%{ height: 72px * @scale; }
-}
-
-@-webkit-keyframes playProgress {
-    0%  { -webkit-transform: scaleX( 0 ); }
-    100%{ -webkit-transform: scaleX( 1 ); }
-}
-@-moz-keyframes playProgress {
-    0%  { -moz-transform: scaleX( 0 ); }
-    100%{ -moz-transform: scaleX( 1 ); }
-}
-@-o-keyframes playProgress {
-    0%  { -o-transform: scaleX( 0 ); }
-    100%{ -o-transform: scaleX( 1 ); }
-}
-@keyframes playProgress {
-    0%  { transform: scaleX( 0 ); }
-    100%{ transform: scaleX( 1 ); }
-}
-
-@-webkit-keyframes swipeRemove {
-    0%  { -webkit-transform: translateX( 100% ); }
-    100%{ -webkit-transform: translateX( 0% ); }
-}
-@-moz-keyframes swipeRemove {
-    0%  { -moz-transform: translateX( 100% ); }
-    100%{ -moz-transform: translateX( 0% ); }
-}
-@-o-keyframes swipeRemove {
-    0%  { -o-transform: translateX( 100% ); }
-    100%{ -o-transform: translateX( 0% ); }
-}
-@keyframes swipeRemove {
-    0%  { transform: translateX( 100% ); }
-    100%{ transform: translateX( 0% ); }
-}
-
-
-#intro {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    margin: ( -1136px * @scale / 2 ) ( -640px * @scale / 2 );
-    width:  (  640px * @scale );
-    height: ( 1136px * @scale );
-    .disable-user-select;
-
-    &.with-statusbar {
-        .carousel {
-            >ul { padding: ( 110px * @scale ) 0 0; }
-            >div { top: 56%; }
-            >nav { bottom: 5%; }
-        }
-        #ios-statusbar {
-            display: block;
+            #full-player-btn {
+                width: 70%;
+                background: url('/images/intro-pause-btn.svg') no-repeat center;
+                background-size: auto 100%;
+                // background-color: fade( white, 10% );
+            }
         }
     }
 }
 
+
+
+//``````````````````````````````
+//  Views
+//
 .view.home {
-
     #intro {
         .box-shadow( 0 1px 4px rgba(0,0,0, 0.3) );
     }
@@ -1135,7 +568,7 @@ a {
 
 .view.phone {
     background: url('/images/iPhone-5-white-silver.png') no-repeat center;
-    background-size: auto ( 1620px * @scale );
+    background-size: auto ( 1620px * @introScale );
     position: relative;
     height: 100%;
     .lh-transform( translate3d(0,0,0) scale3d(1,1,1) );
@@ -1167,13 +600,23 @@ a {
         left: 0;
         top: 0;
         width: 100%;
-        height: 40px * @scale;
+        height: 40px * @introScale;
         pointer-events: none;
         // background: url('/images/ios7-statusbar-white.svg') no-repeat center top;
         // background-size: 100% auto;
     }
-}
 
+    #intro.with-statusbar {
+        .carousel {
+            >ul { padding: ( 110px * @introScale ) 0 0; }
+            >div { top: 56%; }
+            >nav { bottom: 5%; }
+        }
+        #ios-statusbar {
+            display: block;
+        }
+    }
+}
 
 
 

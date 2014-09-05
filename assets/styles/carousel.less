@@ -1,0 +1,86 @@
+/*//////////////////////////////
+
+    Pannable/swipable panes
+
+//////////////////////////////*/
+
+.carousel {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+
+    //  the moveable strip
+    //
+    >ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        position: relative;
+        overflow: hidden;
+        // z-index: 1;
+        .lh-backface-visibility( hidden );
+
+        &.animate {
+            .lh-transition( transform .2s @ease );
+        }
+
+        li {
+            width: 100%;
+            height: 100%;
+            float: left;
+            overflow: hidden;
+        }
+    }
+
+    >nav {
+        position: absolute;
+        bottom: 5%;
+        width: 100%;
+        height: 8px;
+        margin: -4px 0;
+        text-align: center;
+        pointer-events: none;
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            height: 100%;
+        }
+
+        li {
+            display: inline-block;
+            vertical-align: top;
+            position: relative;
+            width: 8px;
+            height: 100%;
+            background-color: @gray-dark;
+            .lh-border-radius( 100% );
+
+            +li { margin-left: 18px; }
+
+            i {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                opacity: 0;
+                background-color: @gray-light;
+                .lh-border-radius( 100% );
+            }
+
+            &.active i {
+                opacity: 1;
+            }
+        }
+        
+        &.animate li i {
+            .lh-transition( opacity .2s @ease );
+        }
+    }
+}

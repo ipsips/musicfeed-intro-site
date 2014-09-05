@@ -53,8 +53,8 @@ angular.module('appDirectives').directive('introAppUi', function( $q, $timeout, 
         for ( var i = 0; i < 6; i++ )
             $scope.tracks.push({
                 new: false,
-                colorName: colorNames[ i % numColors ]/*,
-                color: colors[ i % numColors ]*/
+                colorName: colorNames[ i % numColors ],
+                // color: colors[ i % numColors ]
             });
 
 
@@ -105,7 +105,10 @@ angular.module('appDirectives').directive('introAppUi', function( $q, $timeout, 
 
                 clearTimeout( playTimer );
                 clearInterval( playInt );
-                $animate.removeClass( angular.element('#feed li .play', $element ), 'click' );
+                setTimeout( function() {
+                    // we wait here beacuse it's ugly to cut play button tap animation
+                    $animate.removeClass( angular.element('#feed li .play', $element ), 'click' );
+                }, waitTime() );
                 $animate.removeClass( angular.element('#player', $element ), 'full' );
                 $animate.removeClass( angular.element('#player', $element ), 'visible', function() {
                     $animate.removeClass( angular.element('#play-progress', $element ), 'playing' );
@@ -177,11 +180,10 @@ angular.module('appDirectives').directive('introAppUi', function( $q, $timeout, 
                     var firstColorIndex = colorNames.indexOf( $scope.tracks[ 0 ].colorName ),
                         colorIndex = firstColorIndex==0 ? ( numColors - 1 ) : ( firstColorIndex - 1 );
 
-                    console.debug( colorNames[ colorIndex ] );
                     $scope.tracks.unshift({
                         new: true,
-                        colorName: colorNames[ colorIndex ]/*,
-                        color: colors[ colorIndex ]*/
+                        colorName: colorNames[ colorIndex ],
+                        // color: colors[ colorIndex ]
                     });
                     $scope.tracks.pop();
 
@@ -225,7 +227,7 @@ angular.module('appDirectives').directive('introAppUi', function( $q, $timeout, 
                 if ( $scope.currentPane !== 1 )
                     return;
 
-                $animate.addClass( angular.element('#feed li .play', $element ), 'click' );
+                $animate.addClass( angular.element('#feed li .play', $element ).eq(0), 'click' );
                 animEndTime = Date.now() + 600;
 
                 invokePlayer();
