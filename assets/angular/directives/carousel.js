@@ -21,9 +21,19 @@ angular.module('appDirectives').directive('carousel', function() {
         var numPanes = $scope.panes.length || attributes.numPanes || $element.find('>ul >li').length || 1,
             singlePaneOffset = -100 / numPanes,
             paneW = 0,
-            mc = new Hammer.Manager( $element[0], { touchAction: 'pan-y' } ),
-            panH = new Hammer.Pan({ event: 'panh', direction: Hammer.DIRECTION_HORIZONTAL }),
-            swipeH = new Hammer.Swipe({ event: 'swipeh', direction: Hammer.DIRECTION_HORIZONTAL });
+            mc = new Hammer.Manager(
+                $element[0], {
+                    preventDefault: true,
+                    touchAction: 'none'
+                }),
+            panH = new Hammer.Pan({
+                event: 'panh',
+                direction: Hammer.DIRECTION_HORIZONTAL
+            }),
+            swipeH = new Hammer.Swipe({
+                event: 'swipeh',
+                direction: Hammer.DIRECTION_HORIZONTAL
+            });
 
         mc.add( panH );
         mc.add( swipeH ).recognizeWith( panH );

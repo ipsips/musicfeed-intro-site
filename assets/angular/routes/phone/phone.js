@@ -35,8 +35,7 @@ angular.module('appControllers').controller('PhoneController', ['$scope', '$q', 
 
     $scope.panes = [{
         text:  'Keep track of your friends and\n\
-                favorite artists posting music\n\
-                around the web'
+                favorite artists\' music posts'
         
         /*text:  'musicfeed let\'s you know when\n\
                 your friends and favorite artists\n\

@@ -1,4 +1,4 @@
-<ul style="width: {{ panes.length*100 }}%; transform: translateX( {{ stripOffset }}% );">
+<ul style="width: {{ panes.length*100 }}%; -webkit-transform: translateX( {{ stripOffset }}% ); -moz-transform: translateX( {{ stripOffset }}% ); -o-transform: translateX( {{ stripOffset }}% ); transform: translateX( {{ stripOffset }}% );">
 
     <li class="pane" ng-repeat="pane in panes" style="width: {{ 100/panes.length }}%;">
         <p>{{ pane.text }}</p>
