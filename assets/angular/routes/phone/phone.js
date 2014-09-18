@@ -64,7 +64,7 @@ var panes = [{
 //
 angular.module('appControllers').controller('PhoneController', ['$scope', '$q', '$timeout', '$animate', 'appGlobals', function( $scope, $q, $timeout, $animate, appGlobals ) {
 
-    $scope.showVideo = false;
+    // $scope.showVideo = false;
 
     $scope.panes = panes;
 
@@ -72,7 +72,7 @@ angular.module('appControllers').controller('PhoneController', ['$scope', '$q', 
 
 angular.module('appControllers').controller('PhoneDarkController', ['$scope', '$q', '$timeout', '$animate', 'appGlobals', function( $scope, $q, $timeout, $animate, appGlobals ) {
 
-    $scope.showVideo = false;
+    // $scope.showVideo = false;
 
     $scope.panes = panes;
 
