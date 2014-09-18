@@ -5,6 +5,7 @@
 //  Twitter Bootstrap overrides
 //
 
+@brand-green:           rgb(0, 204, 128);
 @brand-primary:         rgb(255, 0, 56);
 @brand-success:         rgb(30, 170, 60);
 @brand-info:            rgb(60, 190, 220);
@@ -30,12 +31,12 @@
 @gray:                  rgb( 81,  82,  85); //lighten(#000, 33.5%); // #555
 @gray-light:            rgb(189, 193, 204); //lighten(#000, 60%);   // #999
 @gray-lighter:          rgb(219, 223, 234); //lighten(#000, 93.5%); // #eee
-@gray-lightest:         rgb(239, 243, 254);
+@gray-lightest:         rgb(246, 248, 250);
 
-@text-color:            @gray-light;
-@input-color:           @gray-light;
-@input-border:          @gray-dark;
-@btn-default-border:    @gray-dark;
+@text-color:            @gray;
+@input-color:           @gray;
+@input-border:          @gray-lighter;
+@btn-default-border:    @gray-lighter;
 
 // @link-color:            @brand-primary;
 // @link-hover-color:      darken(@link-color, 15%);
@@ -121,19 +122,24 @@
 
 //  app intro specific vars
 //
-@introScale: .5;
+@introScale: .6666;
 @heartTapScale: 5;
 @tapScale: 3;
 @playTapScale: 2;
-@introAppDisplayWidth: 300px * @introScale;
-@introAppDisplayHeight: 526px * @introScale;
-@feedHeight: @introAppDisplayHeight - ( ( 42px + 6px ) * @introScale ); // 42 = menu-bar height, 6 = menu-bar margin
-@miniPlayerHeight: 72px * @introScale;
-@fullPlayerHeight: @feedHeight + ( 12px * @introScale );
-@trackImageryHeight: 169px * @introScale;
-@fullPlayerVideoHeight: @trackImageryHeight * 1.25;
-@oneTracksPxToScroll: -( 169px + 66px + 12px ) * @introScale;
-@twoTracksPxToScroll: -( 169px + 66px + 12px ) * @introScale * 2;
+// @introAppDisplayWidth: 300px * @introScale;
+// @introAppDisplayHeight: 534px * @introScale;
+// @introAppMenuBarHeight: 9%;
+// @feedHeight: @introAppDisplayHeight - ( ( 42px + 6px ) * @introScale ); // 42 = menu-bar height, 6 = menu-bar margin
+// @miniPlayerHeight: 72px * @introScale;
+// @fullPlayerHeight: @feedHeight + ( 12px * @introScale );
+// @trackImageryHeight: 169px * @introScale;
+// @fullPlayerVideoHeight: @trackImageryHeight * 1.25;
+// @oneTracksPxToScroll: -( 169px + 66px + 12px ) * @introScale;
+// @twoTracksPxToScroll: -( 169px + 66px + 12px ) * @introScale * 2;
+@oneTracksToScroll:  -52% * ( 534 * .91 / 300 );
+@twoTracksToScroll: -104% * ( 534 * .91 / 300 );
+@oneTracksToScrollIPhone6:  -48% * ( 690 * .91 / 388 );
+@twoTracksToScrollIPhone6: -96% * ( 690 * .91 / 388 );
 
 
 @summerYellow:      hsl(45, 85%, 60%);

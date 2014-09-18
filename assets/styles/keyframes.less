@@ -7,109 +7,220 @@
 @-webkit-keyframes incomingTrack {
     0%  { opacity: 0; height: 0; }
     50% { opacity: 0;                -webkit-transform: scale( .8 ); }
-    70% {             height: ( 169px + 66px + 12px ) * @introScale; }
+    70% {             height: 52%; }
     100%{ opacity: 1;                -webkit-transform: scale( 1 ); }
 }
 @-moz-keyframes incomingTrack {
     0%  { opacity: 0; height: 0; }
     50% { opacity: 0;                -moz-transform: scale( .8 ); }
-    70% {             height: ( 169px + 66px + 12px ) * @introScale; }
+    70% {             height: 52%; }
     100%{ opacity: 1;                -moz-transform: scale( 1 ); }
 }
 @-o-keyframes incomingTrack {
     0%  { opacity: 0; height: 0; }
     50% { opacity: 0;                -o-transform: scale( .8 ); }
-    70% {             height: ( 169px + 66px + 12px ) * @introScale; }
+    70% {             height: 52%; }
     100%{ opacity: 1;                -o-transform: scale( 1 ); }
 }
 @keyframes incomingTrack {
     0%  { opacity: 0; height: 0; }
     50% { opacity: 0;                transform: scale( .8 ); }
-    70% {             height: ( 169px + 66px + 12px ) * @introScale; }
+    70% {             height: 52%; }
     100%{ opacity: 1;                transform: scale( 1 ); }
 }
 
-@-webkit-keyframes incomingTrackRedBgColor {
-    0%  { background-color: @brand-primary; }
-    70% { background-color: @brand-primary; }
+@-webkit-keyframes incomingTrackIPhone6 {
+    0%  { opacity: 0; height: 0; }
+    50% { opacity: 0;                -webkit-transform: scale( .8 ); }
+    70% {             height: 48%; }
+    100%{ opacity: 1;                -webkit-transform: scale( 1 ); }
+}
+@-moz-keyframes incomingTrackIPhone6 {
+    0%  { opacity: 0; height: 0; }
+    50% { opacity: 0;                -moz-transform: scale( .8 ); }
+    70% {             height: 48%; }
+    100%{ opacity: 1;                -moz-transform: scale( 1 ); }
+}
+@-o-keyframes incomingTrackIPhone6 {
+    0%  { opacity: 0; height: 0; }
+    50% { opacity: 0;                -o-transform: scale( .8 ); }
+    70% {             height: 48%; }
+    100%{ opacity: 1;                -o-transform: scale( 1 ); }
+}
+@keyframes incomingTrackIPhone6 {
+    0%  { opacity: 0; height: 0; }
+    50% { opacity: 0;                transform: scale( .8 ); }
+    70% {             height: 48%; }
+    100%{ opacity: 1;                transform: scale( 1 ); }
+}
+
+@newTrackRed: #FF2D55;
+
+@-webkit-keyframes incomingTrackRedBgColorLight {
+    0%  { background-color: @newTrackRed; }
+    70% { background-color: @newTrackRed; }
+    100%{ background-color: @gray-lighter; }
+}
+@-moz-keyframes incomingTrackRedBgColorLight {
+    0%  { background-color: @newTrackRed; }
+    70% { background-color: @newTrackRed; }
+    100%{ background-color: @gray-lighter; }
+}
+@-o-keyframes incomingTrackRedBgColorLight {
+    0%  { background-color: @newTrackRed; }
+    70% { background-color: @newTrackRed; }
+    100%{ background-color: @gray-lighter; }
+}
+@keyframes incomingTrackRedBgColorLight {
+    0%  { background-color: @newTrackRed; }
+    70% { background-color: @newTrackRed; }
+    100%{ background-color: @gray-lighter; }
+}
+
+@-webkit-keyframes incomingTrackRedFillColorLight {
+    0%  { fill: @newTrackRed; }
+    70% { fill: @newTrackRed; }
+    100%{ fill: @gray-lighter; }
+}
+@-moz-keyframes incomingTrackRedFillColorLight {
+    0%  { fill: @newTrackRed; }
+    70% { fill: @newTrackRed; }
+    100%{ fill: @gray-lighter; }
+}
+@-o-keyframes incomingTrackRedFillColorLight {
+    0%  { fill: @newTrackRed; }
+    70% { fill: @newTrackRed; }
+    100%{ fill: @gray-lighter; }
+}
+@keyframes incomingTrackRedFillColorLight {
+    0%  { fill: @newTrackRed; }
+    70% { fill: @newTrackRed; }
+    100%{ fill: @gray-lighter; }
+}
+
+@-webkit-keyframes incomingTrackRedBgColorDark {
+    0%  { background-color: @newTrackRed; }
+    70% { background-color: @newTrackRed; }
     100%{ background-color: @gray-dark; }
 }
-@-moz-keyframes incomingTrackRedBgColor {
-    0%  { background-color: @brand-primary; }
-    70% { background-color: @brand-primary; }
+@-moz-keyframes incomingTrackRedBgColorDark {
+    0%  { background-color: @newTrackRed; }
+    70% { background-color: @newTrackRed; }
     100%{ background-color: @gray-dark; }
 }
-@-o-keyframes incomingTrackRedBgColor {
-    0%  { background-color: @brand-primary; }
-    70% { background-color: @brand-primary; }
+@-o-keyframes incomingTrackRedBgColorDark {
+    0%  { background-color: @newTrackRed; }
+    70% { background-color: @newTrackRed; }
     100%{ background-color: @gray-dark; }
 }
-@keyframes incomingTrackRedBgColor {
-    0%  { background-color: @brand-primary; }
-    70% { background-color: @brand-primary; }
+@keyframes incomingTrackRedBgColorDark {
+    0%  { background-color: @newTrackRed; }
+    70% { background-color: @newTrackRed; }
     100%{ background-color: @gray-dark; }
 }
 
-@-webkit-keyframes incomingTrackRedFillColor {
-    0%  { fill: @brand-primary; }
-    70% { fill: @brand-primary; }
+@-webkit-keyframes incomingTrackRedFillColorDark {
+    0%  { fill: @newTrackRed; }
+    70% { fill: @newTrackRed; }
     100%{ fill: @gray-dark; }
 }
-@-moz-keyframes incomingTrackRedFillColor {
-    0%  { fill: @brand-primary; }
-    70% { fill: @brand-primary; }
+@-moz-keyframes incomingTrackRedFillColorDark {
+    0%  { fill: @newTrackRed; }
+    70% { fill: @newTrackRed; }
     100%{ fill: @gray-dark; }
 }
-@-o-keyframes incomingTrackRedFillColor {
-    0%  { fill: @brand-primary; }
-    70% { fill: @brand-primary; }
+@-o-keyframes incomingTrackRedFillColorDark {
+    0%  { fill: @newTrackRed; }
+    70% { fill: @newTrackRed; }
     100%{ fill: @gray-dark; }
 }
-@keyframes incomingTrackRedFillColor {
-    0%  { fill: @brand-primary; }
-    70% { fill: @brand-primary; }
+@keyframes incomingTrackRedFillColorDark {
+    0%  { fill: @newTrackRed; }
+    70% { fill: @newTrackRed; }
     100%{ fill: @gray-dark; }
 }
 
 @newTrackGreen: #47cc5e;
 
-@-webkit-keyframes incomingTrackGreenBgColor {
+@-webkit-keyframes incomingTrackGreenBgColorLight {
+    0%  { background-color: @newTrackGreen; }
+    70% { background-color: @newTrackGreen; }
+    100%{ background-color: @gray-lighter; }
+}
+@-moz-keyframes incomingTrackGreenBgColorLight {
+    0%  { background-color: @newTrackGreen; }
+    70% { background-color: @newTrackGreen; }
+    100%{ background-color: @gray-lighter; }
+}
+@-o-keyframes incomingTrackGreenBgColorLight {
+    0%  { background-color: @newTrackGreen; }
+    70% { background-color: @newTrackGreen; }
+    100%{ background-color: @gray-lighter; }
+}
+@keyframes incomingTrackGreenBgColorLight {
+    0%  { background-color: @newTrackGreen; }
+    70% { background-color: @newTrackGreen; }
+    100%{ background-color: @gray-lighter; }
+}
+
+@-webkit-keyframes incomingTrackGreenFillColorLight {
+    0%  { fill: @newTrackGreen; }
+    70% { fill: @newTrackGreen; }
+    100%{ fill: @gray-lighter; }
+}
+@-moz-keyframes incomingTrackGreenFillColorLight {
+    0%  { fill: @newTrackGreen; }
+    70% { fill: @newTrackGreen; }
+    100%{ fill: @gray-lighter; }
+}
+@-o-keyframes incomingTrackGreenFillColorLight {
+    0%  { fill: @newTrackGreen; }
+    70% { fill: @newTrackGreen; }
+    100%{ fill: @gray-lighter; }
+}
+@keyframes incomingTrackGreenFillColorLight {
+    0%  { fill: @newTrackGreen; }
+    70% { fill: @newTrackGreen; }
+    100%{ fill: @gray-lighter; }
+}
+
+@-webkit-keyframes incomingTrackGreenBgColorDark {
     0%  { background-color: @newTrackGreen; }
     70% { background-color: @newTrackGreen; }
     100%{ background-color: @gray-dark; }
 }
-@-moz-keyframes incomingTrackGreenBgColor {
+@-moz-keyframes incomingTrackGreenBgColorDark {
     0%  { background-color: @newTrackGreen; }
     70% { background-color: @newTrackGreen; }
     100%{ background-color: @gray-dark; }
 }
-@-o-keyframes incomingTrackGreenBgColor {
+@-o-keyframes incomingTrackGreenBgColorDark {
     0%  { background-color: @newTrackGreen; }
     70% { background-color: @newTrackGreen; }
     100%{ background-color: @gray-dark; }
 }
-@keyframes incomingTrackGreenBgColor {
+@keyframes incomingTrackGreenBgColorDark {
     0%  { background-color: @newTrackGreen; }
     70% { background-color: @newTrackGreen; }
     100%{ background-color: @gray-dark; }
 }
 
-@-webkit-keyframes incomingTrackGreenFillColor {
+@-webkit-keyframes incomingTrackGreenFillColorDark {
     0%  { fill: @newTrackGreen; }
     70% { fill: @newTrackGreen; }
     100%{ fill: @gray-dark; }
 }
-@-moz-keyframes incomingTrackGreenFillColor {
+@-moz-keyframes incomingTrackGreenFillColorDark {
     0%  { fill: @newTrackGreen; }
     70% { fill: @newTrackGreen; }
     100%{ fill: @gray-dark; }
 }
-@-o-keyframes incomingTrackGreenFillColor {
+@-o-keyframes incomingTrackGreenFillColorDark {
     0%  { fill: @newTrackGreen; }
     70% { fill: @newTrackGreen; }
     100%{ fill: @gray-dark; }
 }
-@keyframes incomingTrackGreenFillColor {
+@keyframes incomingTrackGreenFillColorDark {
     0%  { fill: @newTrackGreen; }
     70% { fill: @newTrackGreen; }
     100%{ fill: @gray-dark; }
@@ -117,43 +228,85 @@
 
 @newTrackYellow: #ffcc02;
 
-@-webkit-keyframes incomingTrackYellowBgColor {
+@-webkit-keyframes incomingTrackYellowBgColorLight {
+    0%  { background-color: @newTrackYellow; }
+    70% { background-color: @newTrackYellow; }
+    100%{ background-color: @gray-lighter; }
+}
+@-moz-keyframes incomingTrackYellowBgColorLight {
+    0%  { background-color: @newTrackYellow; }
+    70% { background-color: @newTrackYellow; }
+    100%{ background-color: @gray-lighter; }
+}
+@-o-keyframes incomingTrackYellowBgColorLight {
+    0%  { background-color: @newTrackYellow; }
+    70% { background-color: @newTrackYellow; }
+    100%{ background-color: @gray-lighter; }
+}
+@keyframes incomingTrackYellowBgColorLight {
+    0%  { background-color: @newTrackYellow; }
+    70% { background-color: @newTrackYellow; }
+    100%{ background-color: @gray-lighter; }
+}
+
+@-webkit-keyframes incomingTrackYellowFillColorLight {
+    0%  { fill: @newTrackYellow; }
+    70% { fill: @newTrackYellow; }
+    100%{ fill: @gray-lighter; }
+}
+@-moz-keyframes incomingTrackYellowFillColorLight {
+    0%  { fill: @newTrackYellow; }
+    70% { fill: @newTrackYellow; }
+    100%{ fill: @gray-lighter; }
+}
+@-o-keyframes incomingTrackYellowFillColorLight {
+    0%  { fill: @newTrackYellow; }
+    70% { fill: @newTrackYellow; }
+    100%{ fill: @gray-lighter; }
+}
+@keyframes incomingTrackYellowFillColorLight {
+    0%  { fill: @newTrackYellow; }
+    70% { fill: @newTrackYellow; }
+    100%{ fill: @gray-lighter; }
+}
+
+@-webkit-keyframes incomingTrackYellowBgColorDark {
     0%  { background-color: @newTrackYellow; }
     70% { background-color: @newTrackYellow; }
     100%{ background-color: @gray-dark; }
 }
-@-moz-keyframes incomingTrackYellowBgColor {
+@-moz-keyframes incomingTrackYellowBgColorDark {
     0%  { background-color: @newTrackYellow; }
     70% { background-color: @newTrackYellow; }
     100%{ background-color: @gray-dark; }
 }
-@-o-keyframes incomingTrackYellowBgColor {
+@-o-keyframes incomingTrackYellowBgColorDark {
     0%  { background-color: @newTrackYellow; }
     70% { background-color: @newTrackYellow; }
     100%{ background-color: @gray-dark; }
 }
-@keyframes incomingTrackYellowBgColor {
+@keyframes incomingTrackYellowBgColorDark {
     0%  { background-color: @newTrackYellow; }
     70% { background-color: @newTrackYellow; }
     100%{ background-color: @gray-dark; }
 }
 
-@-webkit-keyframes incomingTrackYellowFillColor {
+@-webkit-keyframes incomingTrackYellowFillColorDark {
     0%  { fill: @newTrackYellow; }
     70% { fill: @newTrackYellow; }
     100%{ fill: @gray-dark; }
 }
-@-moz-keyframes incomingTrackYellowFillColor {
+@-moz-keyframes incomingTrackYellowFillColorDark {
     0%  { fill: @newTrackYellow; }
     70% { fill: @newTrackYellow; }
     100%{ fill: @gray-dark; }
 }
-@-o-keyframes incomingTrackYellowFillColor {
+@-o-keyframes incomingTrackYellowFillColorDark {
     0%  { fill: @newTrackYellow; }
     70% { fill: @newTrackYellow; }
     100%{ fill: @gray-dark; }
 }
-@keyframes incomingTrackYellowFillColor {
+@keyframes incomingTrackYellowFillColorDark {
     0%  { fill: @newTrackYellow; }
     70% { fill: @newTrackYellow; }
     100%{ fill: @gray-dark; }
@@ -161,43 +314,85 @@
 
 @newTrackBlue: #5ac8fa;
 
-@-webkit-keyframes incomingTrackBlueBgColor {
+@-webkit-keyframes incomingTrackBlueBgColorLight {
+    0%  { background-color: @newTrackBlue; }
+    70% { background-color: @newTrackBlue; }
+    100%{ background-color: @gray-lighter; }
+}
+@-moz-keyframes incomingTrackBlueBgColorLight {
+    0%  { background-color: @newTrackBlue; }
+    70% { background-color: @newTrackBlue; }
+    100%{ background-color: @gray-lighter; }
+}
+@-o-keyframes incomingTrackBlueBgColorLight {
+    0%  { background-color: @newTrackBlue; }
+    70% { background-color: @newTrackBlue; }
+    100%{ background-color: @gray-lighter; }
+}
+@keyframes incomingTrackBlueBgColorLight {
+    0%  { background-color: @newTrackBlue; }
+    70% { background-color: @newTrackBlue; }
+    100%{ background-color: @gray-lighter; }
+}
+
+@-webkit-keyframes incomingTrackBlueFillColorLight {
+    0%  { fill: @newTrackBlue; }
+    70% { fill: @newTrackBlue; }
+    100%{ fill: @gray-lighter; }
+}
+@-moz-keyframes incomingTrackBlueFillColorLight {
+    0%  { fill: @newTrackBlue; }
+    70% { fill: @newTrackBlue; }
+    100%{ fill: @gray-lighter; }
+}
+@-o-keyframes incomingTrackBlueFillColorLight {
+    0%  { fill: @newTrackBlue; }
+    70% { fill: @newTrackBlue; }
+    100%{ fill: @gray-lighter; }
+}
+@keyframes incomingTrackBlueFillColorLight {
+    0%  { fill: @newTrackBlue; }
+    70% { fill: @newTrackBlue; }
+    100%{ fill: @gray-lighter; }
+}
+
+@-webkit-keyframes incomingTrackBlueBgColorDark {
     0%  { background-color: @newTrackBlue; }
     70% { background-color: @newTrackBlue; }
     100%{ background-color: @gray-dark; }
 }
-@-moz-keyframes incomingTrackBlueBgColor {
+@-moz-keyframes incomingTrackBlueBgColorDark {
     0%  { background-color: @newTrackBlue; }
     70% { background-color: @newTrackBlue; }
     100%{ background-color: @gray-dark; }
 }
-@-o-keyframes incomingTrackBlueBgColor {
+@-o-keyframes incomingTrackBlueBgColorDark {
     0%  { background-color: @newTrackBlue; }
     70% { background-color: @newTrackBlue; }
     100%{ background-color: @gray-dark; }
 }
-@keyframes incomingTrackBlueBgColor {
+@keyframes incomingTrackBlueBgColorDark {
     0%  { background-color: @newTrackBlue; }
     70% { background-color: @newTrackBlue; }
     100%{ background-color: @gray-dark; }
 }
 
-@-webkit-keyframes incomingTrackBlueFillColor {
+@-webkit-keyframes incomingTrackBlueFillColorDark {
     0%  { fill: @newTrackBlue; }
     70% { fill: @newTrackBlue; }
     100%{ fill: @gray-dark; }
 }
-@-moz-keyframes incomingTrackBlueFillColor {
+@-moz-keyframes incomingTrackBlueFillColorDark {
     0%  { fill: @newTrackBlue; }
     70% { fill: @newTrackBlue; }
     100%{ fill: @gray-dark; }
 }
-@-o-keyframes incomingTrackBlueFillColor {
+@-o-keyframes incomingTrackBlueFillColorDark {
     0%  { fill: @newTrackBlue; }
     70% { fill: @newTrackBlue; }
     100%{ fill: @gray-dark; }
 }
-@keyframes incomingTrackBlueFillColor {
+@keyframes incomingTrackBlueFillColorDark {
     0%  { fill: @newTrackBlue; }
     70% { fill: @newTrackBlue; }
     100%{ fill: @gray-dark; }
@@ -256,85 +451,168 @@
 
 @-webkit-keyframes outgoingTrack {
     0%  { opacity: 1;                -webkit-transform: scale( 1 ); }
-    30% {             height: ( 169px + 66px + 12px ) * @introScale; }
+    30% {             height: 52%; }
     50% { opacity: 0;                -webkit-transform: scale( .8 ); }
     100%{ opacity: 0; height: 0; }
 }
 @-moz-keyframes outgoingTrack {
     0%  { opacity: 0; height: 0; }
     50% { opacity: 0;                -moz-transform: scale( .8 ); }
-    70% {             height: ( 169px + 66px + 12px ) * @introScale; }
+    70% {             height: 52%; }
     100%{ opacity: 1;                -moz-transform: scale( 1 ); }
 }
 @-o-keyframes outgoingTrack {
     0%  { opacity: 0; height: 0; }
     50% { opacity: 0;                -o-transform: scale( .8 ); }
-    70% {             height: ( 169px + 66px + 12px ) * @introScale; }
+    70% {             height: 52%; }
     100%{ opacity: 1;                -o-transform: scale( 1 ); }
 }
 @keyframes outgoingTrack {
     0%  { opacity: 0; height: 0; }
     50% { opacity: 0;                transform: scale( .8 ); }
-    70% {             height: ( 169px + 66px + 12px ) * @introScale; }
+    70% {             height: 52%; }
+    100%{ opacity: 1;                transform: scale( 1 ); }
+}
+
+@-webkit-keyframes outgoingTrackIPhone6 {
+    0%  { opacity: 1;                -webkit-transform: scale( 1 ); }
+    30% {             height: 48%; }
+    50% { opacity: 0;                -webkit-transform: scale( .8 ); }
+    100%{ opacity: 0; height: 0; }
+}
+@-moz-keyframes outgoingTrackiPhone6 {
+    0%  { opacity: 0; height: 0; }
+    50% { opacity: 0;                -moz-transform: scale( .8 ); }
+    70% {             height: 48%; }
+    100%{ opacity: 1;                -moz-transform: scale( 1 ); }
+}
+@-o-keyframes outgoingTrackIPhone6 {
+    0%  { opacity: 0; height: 0; }
+    50% { opacity: 0;                -o-transform: scale( .8 ); }
+    70% {             height: 48%; }
+    100%{ opacity: 1;                -o-transform: scale( 1 ); }
+}
+@keyframes outgoingTrackIPhone6 {
+    0%  { opacity: 0; height: 0; }
+    50% { opacity: 0;                transform: scale( .8 ); }
+    70% {             height: 48%; }
     100%{ opacity: 1;                transform: scale( 1 ); }
 }
 
 @-webkit-keyframes digFeedByTwo {
     0%  { margin-top: 0; }
-    50% { margin-top: @twoTracksPxToScroll * .3; }
-    55% { margin-top: @twoTracksPxToScroll * .35; }
-    60% { margin-top: @twoTracksPxToScroll * .35; }
-    100%{ margin-top: @twoTracksPxToScroll; }
+    50% { margin-top: @twoTracksToScroll * .3; }
+    55% { margin-top: @twoTracksToScroll * .35; }
+    60% { margin-top: @twoTracksToScroll * .35; }
+    100%{ margin-top: @twoTracksToScroll; }
 }
 @-moz-keyframes digFeedByTwo {
     0%  { margin-top: 0; }
-    50% { margin-top: @twoTracksPxToScroll * .3; }
-    55% { margin-top: @twoTracksPxToScroll * .35; }
-    60% { margin-top: @twoTracksPxToScroll * .35; }
-    100%{ margin-top: @twoTracksPxToScroll; }
+    50% { margin-top: @twoTracksToScroll * .3; }
+    55% { margin-top: @twoTracksToScroll * .35; }
+    60% { margin-top: @twoTracksToScroll * .35; }
+    100%{ margin-top: @twoTracksToScroll; }
 }
 @-o-keyframes digFeedByTwo {
     0%  { margin-top: 0; }
-    50% { margin-top: @twoTracksPxToScroll * .3; }
-    55% { margin-top: @twoTracksPxToScroll * .35; }
-    60% { margin-top: @twoTracksPxToScroll * .35; }
-    100%{ margin-top: @twoTracksPxToScroll; }
+    50% { margin-top: @twoTracksToScroll * .3; }
+    55% { margin-top: @twoTracksToScroll * .35; }
+    60% { margin-top: @twoTracksToScroll * .35; }
+    100%{ margin-top: @twoTracksToScroll; }
 }
 @keyframes digFeedByTwo {
     0%  { margin-top: 0; }
-    50% { margin-top: @twoTracksPxToScroll * .3; }
-    55% { margin-top: @twoTracksPxToScroll * .35; }
-    60% { margin-top: @twoTracksPxToScroll * .35; }
-    100%{ margin-top: @twoTracksPxToScroll; }
+    50% { margin-top: @twoTracksToScroll * .3; }
+    55% { margin-top: @twoTracksToScroll * .35; }
+    60% { margin-top: @twoTracksToScroll * .35; }
+    100%{ margin-top: @twoTracksToScroll; }
 }
 
 @-webkit-keyframes digFeedByOne {
     0%  { margin-top: 0; }
-    50% { margin-top: @oneTracksPxToScroll * .6; }
-    55% { margin-top: @oneTracksPxToScroll * .65; }
-    60% { margin-top: @oneTracksPxToScroll * .65; }
-    100%{ margin-top: @oneTracksPxToScroll; }
+    50% { margin-top: @oneTracksToScroll * .6; }
+    55% { margin-top: @oneTracksToScroll * .65; }
+    60% { margin-top: @oneTracksToScroll * .65; }
+    100%{ margin-top: @oneTracksToScroll; }
 }
 @-moz-keyframes digFeedByOne {
     0%  { margin-top: 0; }
-    50% { margin-top: @oneTracksPxToScroll * .6; }
-    55% { margin-top: @oneTracksPxToScroll * .65; }
-    60% { margin-top: @oneTracksPxToScroll * .65; }
-    100%{ margin-top: @oneTracksPxToScroll; }
+    50% { margin-top: @oneTracksToScroll * .6; }
+    55% { margin-top: @oneTracksToScroll * .65; }
+    60% { margin-top: @oneTracksToScroll * .65; }
+    100%{ margin-top: @oneTracksToScroll; }
 }
 @-o-keyframes digFeedByOne {
     0%  { margin-top: 0; }
-    50% { margin-top: @oneTracksPxToScroll * .6; }
-    55% { margin-top: @oneTracksPxToScroll * .65; }
-    60% { margin-top: @oneTracksPxToScroll * .65; }
-    100%{ margin-top: @oneTracksPxToScroll; }
+    50% { margin-top: @oneTracksToScroll * .6; }
+    55% { margin-top: @oneTracksToScroll * .65; }
+    60% { margin-top: @oneTracksToScroll * .65; }
+    100%{ margin-top: @oneTracksToScroll; }
 }
 @keyframes digFeedByOne {
     0%  { margin-top: 0; }
-    50% { margin-top: @oneTracksPxToScroll * .6; }
-    55% { margin-top: @oneTracksPxToScroll * .65; }
-    60% { margin-top: @oneTracksPxToScroll * .65; }
-    100%{ margin-top: @oneTracksPxToScroll; }
+    50% { margin-top: @oneTracksToScroll * .6; }
+    55% { margin-top: @oneTracksToScroll * .65; }
+    60% { margin-top: @oneTracksToScroll * .65; }
+    100%{ margin-top: @oneTracksToScroll; }
+}
+
+@-webkit-keyframes digFeedByTwoIPhone6 {
+    0%  { margin-top: 0; }
+    50% { margin-top: @twoTracksToScrollIPhone6 * .3; }
+    55% { margin-top: @twoTracksToScrollIPhone6 * .35; }
+    60% { margin-top: @twoTracksToScrollIPhone6 * .35; }
+    100%{ margin-top: @twoTracksToScrollIPhone6; }
+}
+@-moz-keyframes digFeedByTwoIPhone6 {
+    0%  { margin-top: 0; }
+    50% { margin-top: @twoTracksToScrollIPhone6 * .3; }
+    55% { margin-top: @twoTracksToScrollIPhone6 * .35; }
+    60% { margin-top: @twoTracksToScrollIPhone6 * .35; }
+    100%{ margin-top: @twoTracksToScrollIPhone6; }
+}
+@-o-keyframes digFeedByTwoIPhone6 {
+    0%  { margin-top: 0; }
+    50% { margin-top: @twoTracksToScrollIPhone6 * .3; }
+    55% { margin-top: @twoTracksToScrollIPhone6 * .35; }
+    60% { margin-top: @twoTracksToScrollIPhone6 * .35; }
+    100%{ margin-top: @twoTracksToScrollIPhone6; }
+}
+@keyframes digFeedByTwoIPhone6 {
+    0%  { margin-top: 0; }
+    50% { margin-top: @twoTracksToScrollIPhone6 * .3; }
+    55% { margin-top: @twoTracksToScrollIPhone6 * .35; }
+    60% { margin-top: @twoTracksToScrollIPhone6 * .35; }
+    100%{ margin-top: @twoTracksToScrollIPhone6; }
+}
+
+@-webkit-keyframes digFeedByOneIPhone6 {
+    0%  { margin-top: 0; }
+    50% { margin-top: @oneTracksToScrollIPhone6 * .6; }
+    55% { margin-top: @oneTracksToScrollIPhone6 * .65; }
+    60% { margin-top: @oneTracksToScrollIPhone6 * .65; }
+    100%{ margin-top: @oneTracksToScrollIPhone6; }
+}
+@-moz-keyframes digFeedByOneIPhone6 {
+    0%  { margin-top: 0; }
+    50% { margin-top: @oneTracksToScrollIPhone6 * .6; }
+    55% { margin-top: @oneTracksToScrollIPhone6 * .65; }
+    60% { margin-top: @oneTracksToScrollIPhone6 * .65; }
+    100%{ margin-top: @oneTracksToScrollIPhone6; }
+}
+@-o-keyframes digFeedByOneIPhone6 {
+    0%  { margin-top: 0; }
+    50% { margin-top: @oneTracksToScrollIPhone6 * .6; }
+    55% { margin-top: @oneTracksToScrollIPhone6 * .65; }
+    60% { margin-top: @oneTracksToScrollIPhone6 * .65; }
+    100%{ margin-top: @oneTracksToScrollIPhone6; }
+}
+@keyframes digFeedByOneIPhone6 {
+    0%  { margin-top: 0; }
+    50% { margin-top: @oneTracksToScrollIPhone6 * .6; }
+    55% { margin-top: @oneTracksToScrollIPhone6 * .65; }
+    60% { margin-top: @oneTracksToScrollIPhone6 * .65; }
+    100%{ margin-top: @oneTracksToScrollIPhone6; }
 }
 
 @-webkit-keyframes popUpPlayer {
@@ -376,88 +654,88 @@
 }
 
 @-webkit-keyframes popDownFullPlayer {
-    0%  { -webkit-transform: translateY( 0% ); height: @fullPlayerHeight; }
-    100%{ -webkit-transform: translateY( 100% ); height: @miniPlayerHeight; }
+    0%  { -webkit-transform: translateY( 0% ); height: 93.3%; }
+    100%{ -webkit-transform: translateY( 100% ); height: 13.7%; }
 }
 @-moz-keyframes popDownFullPlayer {
-    0%  { -moz-transform: translateY( 0% ); height: @fullPlayerHeight; }
-    100%{ -moz-transform: translateY( 100% ); height: @miniPlayerHeight; }
+    0%  { -moz-transform: translateY( 0% ); height: 93.3%; }
+    100%{ -moz-transform: translateY( 100% ); height: 13.7%; }
 }
 @-o-keyframes popDownFullPlayer {
-    0%  { -o-transform: translateY( 0% ); height: @fullPlayerHeight; }
-    100%{ -o-transform: translateY( 100% ); height: @miniPlayerHeight; }
+    0%  { -o-transform: translateY( 0% ); height: 93.3%; }
+    100%{ -o-transform: translateY( 100% ); height: 13.7%; }
 }
 @keyframes popDownFullPlayer {
-    0%  { transform: translateY( 0% ); height: @fullPlayerHeight; }
-    100%{ transform: translateY( 100% ); height: @miniPlayerHeight; }
+    0%  { transform: translateY( 0% ); height: 93.3%; }
+    100%{ transform: translateY( 100% ); height: 13.7%; }
 }
 
 @-webkit-keyframes maximizePlayer {
-    0%  { height: @miniPlayerHeight; }
-    100%{ height: @fullPlayerHeight; }
+    0%  { height: 13.7%; }
+    100%{ height: 93.3%; }
 }
 @-moz-keyframes maximizePlayer {
-    0%  { height: @miniPlayerHeight; }
-    100%{ height: @fullPlayerHeight; }
+    0%  { height: 13.7%; }
+    100%{ height: 93.3%; }
 }
 @-o-keyframes maximizePlayer {
-    0%  { height: @miniPlayerHeight; }
-    100%{ height: @fullPlayerHeight; }
+    0%  { height: 13.7%; }
+    100%{ height: 93.3%; }
 }
 @keyframes maximizePlayer {
-    0%  { height: @miniPlayerHeight; }
-    100%{ height: @fullPlayerHeight; }
+    0%  { height: 13.7%; }
+    100%{ height: 93.3%; }
 }
 
 @-webkit-keyframes maximizeVideo {
     0%  { height: 0; }
-    100%{ height: @fullPlayerVideoHeight; }
+    100%{ height: 44%; }
 }
 @-moz-keyframes maximizeVideo {
     0%  { height: 0; }
-    100%{ height: @fullPlayerVideoHeight; }
+    100%{ height: 44%; }
 }
 @-o-keyframes maximizeVideo {
     0%  { height: 0; }
-    100%{ height: @fullPlayerVideoHeight; }
+    100%{ height: 44%; }
 }
 @keyframes maximizeVideo {
     0%  { height: 0; }
-    100%{ height: @fullPlayerVideoHeight; }
+    100%{ height: 44%; }
 }
 
 @-webkit-keyframes minimizeVideo {
-    0%  { height: @fullPlayerVideoHeight; }
+    0%  { height: 44%; }
     100%{ height: 0; }
 }
 @-moz-keyframes minimizeVideo {
-    0%  { height: @fullPlayerVideoHeight; }
+    0%  { height: 44%; }
     100%{ height: 0; }
 }
 @-o-keyframes minimizeVideo {
-    0%  { height: @fullPlayerVideoHeight; }
+    0%  { height: 44%; }
     100%{ height: 0; }
 }
 @keyframes minimizeVideo {
-    0%  { height: @fullPlayerVideoHeight; }
+    0%  { height: 44%; }
     100%{ height: 0; }
 }
 
 @-webkit-keyframes minimizePlayer {
-    0%  { height: @fullPlayerHeight; }
-    100%{ height: @miniPlayerHeight; }
+    0%  { height: 93.3%; }
+    100%{ height: 13.7%; }
 }
 @-moz-keyframes minimizePlayer {
-    0%  { height: @fullPlayerHeight; }
-    100%{ height: @miniPlayerHeight; }
+    0%  { height: 93.3%; }
+    100%{ height: 13.7%; }
 }
 @-o-keyframes minimizePlayer {
-    0%  { height: @fullPlayerHeight; }
-    100%{ height: @miniPlayerHeight; }
+    0%  { height: 93.3%; }
+    100%{ height: 13.7%; }
 }
 @keyframes minimizePlayer {
-    0%  { height: @fullPlayerHeight; }
-    100%{ height: @miniPlayerHeight; }
+    0%  { height: 93.3%; }
+    100%{ height: 13.7%; }
 }
 
 @-webkit-keyframes showMiniPlayerControl {
@@ -495,37 +773,37 @@
 }
 
 @-webkit-keyframes showFullPlayerControl {
-    0%  { -webkit-transform: translateY( 100px * @introScale ); opacity: 0; }
-    100%{ -webkit-transform: translateY( 0px ); opacity: 1; }
+    0%  { -webkit-transform: translateY( 120% ); opacity: 0; }
+    100%{ -webkit-transform: translateY( 0% ); opacity: 1; }
 }
 @-moz-keyframes showFullPlayerControl {
-    0%  { -moz-transform: translateY( 100px * @introScale ); opacity: 0; }
-    100%{ -moz-transform: translateY( 0px ); opacity: 1; }
+    0%  { -moz-transform: translateY( 120% ); opacity: 0; }
+    100%{ -moz-transform: translateY( 0% ); opacity: 1; }
 }
 @-o-keyframes showFullPlayerControl {
-    0%  { -o-transform: translateY( 100px * @introScale ); opacity: 0; }
-    100%{ -o-transform: translateY( 0px ); opacity: 1; }
+    0%  { -o-transform: translateY( 120% ); opacity: 0; }
+    100%{ -o-transform: translateY( 0% ); opacity: 1; }
 }
 @keyframes showFullPlayerControl {
-    0%  { transform: translateY( 100px * @introScale ); opacity: 0; }
-    100%{ transform: translateY( 0px ); opacity: 1; }
+    0%  { transform: translateY( 120% ); opacity: 0; }
+    100%{ transform: translateY( 0% ); opacity: 1; }
 }
 
 @-webkit-keyframes hideFullPlayerControl {
-    0%  { -webkit-transform: translateY( 0px ); opacity: 1; }
-    100%{ -webkit-transform: translateY( 100px * @introScale ); opacity: 0; }
+    0%  { -webkit-transform: translateY( 0% ); opacity: 1; }
+    100%{ -webkit-transform: translateY( 120% ); opacity: 0; }
 }
 @-moz-keyframes hideFullPlayerControl {
-    0%  { -moz-transform: translateY( 0px ); opacity: 1; }
-    100%{ -moz-transform: translateY( 100px * @introScale ); opacity: 0; }
+    0%  { -moz-transform: translateY( 0% ); opacity: 1; }
+    100%{ -moz-transform: translateY( 120% ); opacity: 0; }
 }
 @-o-keyframes hideFullPlayerControl {
-    0%  { -o-transform: translateY( 0px ); opacity: 1; }
-    100%{ -o-transform: translateY( 100px * @introScale ); opacity: 0; }
+    0%  { -o-transform: translateY( 0% ); opacity: 1; }
+    100%{ -o-transform: translateY( 120% ); opacity: 0; }
 }
 @keyframes hideFullPlayerControl {
-    0%  { transform: translateY( 0px ); opacity: 1; }
-    100%{ transform: translateY( 100px * @introScale ); opacity: 0; }
+    0%  { transform: translateY( 0% ); opacity: 1; }
+    100%{ transform: translateY( 120% ); opacity: 0; }
 }
 
 @-webkit-keyframes playProgress {

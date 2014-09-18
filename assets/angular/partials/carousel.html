@@ -1,6 +1,6 @@
-<ul style="width: {{ panes.length*100 }}%; -webkit-transform: translateX( {{ stripOffset }}% ); -moz-transform: translateX( {{ stripOffset }}% ); -o-transform: translateX( {{ stripOffset }}% ); transform: translateX( {{ stripOffset }}% );">
+<ul style="width: {{ panes.length*100 }}%; left: 0%;" ng-class="{ 'animate': animate, 'slow': slow }">
 
-    <li class="pane" ng-repeat="pane in panes" style="width: {{ 100/panes.length }}%;">
+    <li class="pane" ng-repeat="pane in panes" style="width: {{ 100/panes.length }}%; opacity: {{ bullets[$index].opacity }};">
         <p>{{ pane.text }}</p>
     </li>
 
@@ -10,9 +10,9 @@
 <div class="intro-app-ui"></div>
 
 
-<nav>
+<nav ng-class="{ 'control-enabled': bulletControl, 'animate': animate, 'slow': slow }">
     <ul id="story-progress-indicator">
-        <li ng-repeat="bullet in bullets">
+        <li ng-repeat="bullet in bullets" ng-click="bulletControlNav( $index )">
             <i style="opacity: {{ bullet.opacity }};"></i>
         </li>
     </ul>
