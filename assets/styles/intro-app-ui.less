@@ -34,13 +34,17 @@
 
     //  bulleted nav indicator
     //
-    .carousel >nav {
-        bottom: 7%;
-        height: 12px * @scale;
-        margin: ( -6px * @scale ) 0;
+    .carousel {
+        background-color: @gray-darker;
 
-        li { width: 12px * @scale; }
-        li +li { margin-left: 24px * @scale; }
+        >nav {
+            bottom: 7%;
+            height: 12px * @scale;
+            margin: ( -6px * @scale ) 0;
+
+            li { width: 12px * @scale; }
+            li +li { margin-left: 24px * @scale; }
+        }
     }
 
     //  fixed phone wireframe
@@ -591,16 +595,20 @@
 
         //  bulleted nav indicator
         //
-        .carousel >nav {
-            bottom: 7%;
-            height: 12px * @scale;
-            margin: ( -6px * @scale ) 0;
+        .carousel {
+            background-color: @wireframeBgColor;
 
-            li {
-                width: 12px * @scale;
-                background-color: @wireframeColor;
+            >nav {
+                bottom: 7%;
+                height: 12px * @scale;
+                margin: ( -6px * @scale ) 0;
 
-                i { background-color: @bulletColor; }
+                li {
+                    width: 12px * @scale;
+                    background-color: @wireframeColor;
+
+                    i { background-color: @bulletColor; }
+                }
             }
         }
 
