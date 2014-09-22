@@ -80,15 +80,18 @@ a {
     }
 
     #app-icon {
-        background: url('../images/musicfeed-app-icon-2014.svg') no-repeat;
-        background-size: contain;
+        // background: url('../images/musicfeed-app-icon-2014.svg') no-repeat;
+        // background-size: contain;
+
+        #logo-symbol { fill: white; }
+        #superellipse { fill: @gray-darker; }
 
         +#app-name { margin-left: .2em; }
     }
 
     #app-name {
         .brand-type();
-        color: rgb(34, 34, 34);
+        color: @gray-darker;
         margin: 0;
     }
 }
@@ -98,11 +101,11 @@ a {
 //``````````````````````````````
 //  Appstore buttons
 //
-#store-buttons {
+.store-buttons( @scale: 1 ) {
     position: absolute;
     z-index: 20;
-    right: 36px;
-    bottom: 36px;
+    right: 36px * @scale;
+    top: 36px * @scale;
     margin: 0;
     padding: 0;
     text-align: right;
@@ -112,21 +115,21 @@ a {
 
         a {
             display: block;
-            width: 150px;
-            height: 45px;
+            width: 150px * @scale;
+            height: 45px * @scale;
             background-size: 100% auto;
             background-repeat: no-repeat;
         }
     
         +li a {
-            margin-top: 24px;
+            margin-top: 24px * @scale;
         }
     }
 
     #ios-app-store      a { background-image: url('../images/ios-app-store-badge.svg'); }
-    #android-play-store a { background-image: url('../images/android-play-store-badge.svg'); height: 51px; }
-
+    #android-play-store a { background-image: url('../images/android-play-store-badge.svg'); height: 51px * @scale; }
 }
+#store-buttons { .store-buttons( 1 ); }
 
 
 
@@ -150,6 +153,8 @@ a {
 
         >ul, .intro-app-ui, >nav { z-index: 2; }
 
+        >nav li +li { margin-left: 36px * @homeIntroScale !important; }
+
         .carousel-hitarea {
             position: absolute;
             width: 0;
@@ -162,6 +167,7 @@ a {
 
     #intro {
         .intro-iphone-6( @homeIntroScale, 'light' );
+        top: 53%;
 
         width: 960px * @homeIntroScale;
         margin-left: -960px * @homeIntroScale / 2;
@@ -276,13 +282,13 @@ a {
 }
 .view.phone {
 
-    #intro { .intro-iphone-6( @phoneIntroScale, 'light' ); }
+    #intro { .intro-iphone-6( @phoneIntroScale, 'light' ); .carousel { background-color: white; } }
 
     #backdrop { background-color: white; }
 }
 .view.phone-dark {
 
-    #intro { .intro-iphone-6( @phoneIntroScale, 'dark' ); }
+    #intro { .intro-iphone-6( @phoneIntroScale, 'dark' ); .carousel { background-color: @gray-darker; } }
 
     #backdrop { background-color: @gray-darker; }
 }
@@ -293,67 +299,47 @@ a {
 //  Viewport adaption
 //
 
-//  XS
+//  S
 //
 @media
 ( max-height: 680px ),
 ( max-height: 767px ) and ( max-width: 767px ) {
     
-    #brand { .brand-size( 30px ); }
+    #brand { .brand-size( 45px ); }
 
-    #store-buttons {
-        right: 18px;
-        bottom: 18px;
+    .view.home { .home-view-rescaled( .45 ); }
 
-        li {
-            a {
-                width: 101px;
-                height: 30px;
-            }
-            
-            +li a { margin-top: 18px; }
+    #store-buttons { .store-buttons( 1 * (.45 / .5) ); }
 
-            &#android-play-store a { height: 34px; }
-        }
-    }
-
-    .view.home {
-        .home-view-rescaled( .33 );
-        min-height: 540px;
-
-        #intro .pane {
-            font-size: 14px;
-        
-            p { margin-top: 0; }
-        }
-    }
 }
+
+//  XS
+//
 @media
-( max-height: 680px ) and ( max-width: 480px ),
-( min-height: 768px ) and ( max-width: 600px ) {
+( max-height: 610px ),
+( max-height: 697px ) and ( max-width: 697px ) {
+    
+    #brand { .brand-size( 40px ); }
 
-    #store-buttons {
-        bottom: 18px;
+    .view.home { .home-view-rescaled( .4 ); }
+    .view.home #intro .pane { font-size: 14px; p { margin-top: 0; } }
 
-        li {
-            display: inline-block;
-            vertical-align: bottom;
-
-            a {
-                background-size: auto 100%;
-            }
-            
-            +li a { margin-left: 18px; margin-top: 0; }
-
-            &#android-play-store a { width: 88px; height: 30px; }
-        }
-    }
+    #store-buttons { .store-buttons( 1 * (.4 / .5) ); }
 }
-@media ( min-height: 768px ) and ( max-width: 600px ) {
-    #android-play-store a {
-        width: 132px !important;
-        height: 45px !important;
-    }
+
+//  XXS
+//
+@media
+( max-height: 540px ),
+( max-height: 607px ) and ( max-width: 607px ) {
+    
+    #brand { .brand-size( 30px ); top: 15px; left: 15px; }
+
+    .view.home { .home-view-rescaled( .33 ); }
+    .view.home #intro { top: 55%; }
+    .view.home #intro .pane { font-size: 14px; p { margin-top: 0; } }
+
+    #store-buttons { .store-buttons( 1 * (.33 / .5) ); top: 15px; right: 15px; }
 }
 
 //  XL
@@ -364,23 +350,9 @@ a {
 
     #brand { .brand-size( 80px ); }
 
-    #store-buttons {
-        right: 54px;
-        bottom: 54px;
-
-        li {
-            a {
-                width: 300px;
-                height: 89px;
-            }
-
-            +li a { margin-top: 36px; }
-
-            &#android-play-store a { height: 52px; }
-        }
-    }
-
     .view.home { .home-view-rescaled( 1 ); }
+
+    #store-buttons { .store-buttons( 1.6 ); }
 }
 
 
