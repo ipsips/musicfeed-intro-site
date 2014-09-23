@@ -167,14 +167,16 @@ a {
 
     #intro {
         .intro-iphone-6( @homeIntroScale, 'light' );
-        top: 53%;
-
+        
+        top: 55%;
         width: 960px * @homeIntroScale;
         margin-left: -960px * @homeIntroScale / 2;
         margin-right: -960px * @homeIntroScale / 2;
 
         .pane {
             color: @gray-dark;
+            font-size: 48px * @homeIntroScale;
+            p { margin-top: 0; }
         }
 
         //  use a real phone photo
@@ -308,6 +310,7 @@ a {
     #brand { .brand-size( 45px ); }
 
     .view.home { .home-view-rescaled( .45 ); }
+    .view.home #intro .pane { font-size: 48px * .45; }
 
     #store-buttons { .store-buttons( 1 * (.45 / .5) ); }
 
@@ -322,7 +325,7 @@ a {
     #brand { .brand-size( 40px ); }
 
     .view.home { .home-view-rescaled( .4 ); }
-    .view.home #intro .pane { font-size: 14px; p { margin-top: 0; } }
+    .view.home #intro .pane { font-size: 48px * .4; }
 
     #store-buttons { .store-buttons( 1 * (.4 / .5) ); }
 }
@@ -336,8 +339,7 @@ a {
     #brand { .brand-size( 30px ); top: 15px; left: 15px; }
 
     .view.home { .home-view-rescaled( .33 ); }
-    .view.home #intro { top: 55%; }
-    .view.home #intro .pane { font-size: 14px; p { margin-top: 0; } }
+    .view.home #intro .pane { font-size: 48px * .33; }
 
     #store-buttons { .store-buttons( 1 * (.33 / .5) ); top: 15px; right: 15px; }
 }
@@ -351,6 +353,7 @@ a {
     #brand { .brand-size( 80px ); }
 
     .view.home { .home-view-rescaled( 1 ); }
+    .view.home #intro .pane { font-size: 48px; }
 
     #store-buttons { .store-buttons( 1.6 ); }
 }
