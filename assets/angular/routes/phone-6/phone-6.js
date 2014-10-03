@@ -15,15 +15,17 @@
 //
 angular.module('app').config(['$routeProvider', function($routeProvider) {
 
-    $routeProvider.when('/phone',
+    $routeProvider.when('/phone', { redirectTo: 'phone-6' });
+    $routeProvider.when('/phone-6',
     {
-        templateUrl: '/angular/routes/phone/phone.html',
+        templateUrl: '/angular/routes/phone-6/phone-6.html',
         controller: 'PhoneController'
     });
 
-    $routeProvider.when('/phone-dark',
+    $routeProvider.when('/phone-dark', { redirectTo: 'phone-6-dark' });
+    $routeProvider.when('/phone-6-dark',
     {
-        templateUrl: '/angular/routes/phone/phone.html',
+        templateUrl: '/angular/routes/phone-6/phone-6.html',
         controller: 'PhoneDarkController'
     });
 

@@ -30,7 +30,7 @@
   "main": "app.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/ips/intro-site.git"
+    "url": "git://github.com/audioathlete/musicfeed-intro-site.git"
   },
   "author": "ips",
   "license": ""
