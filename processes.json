@@ -10,5 +10,5 @@
 		"views"
 	],
 	"watch": "true",
-	"cwd": "/Users/ips/Desktop/musicfeed/intro-site"
+	"cwd": "."
 }
